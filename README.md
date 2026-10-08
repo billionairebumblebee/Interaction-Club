@@ -56,6 +56,47 @@ Early outreach led to a community operator proposing a member-only dinner and of
 
 Private prospect contacts, participant records, pricing proposals and agreement drafts are not part of this public summary.
 
+## Outreach and go-to-market validation
+
+During hackathon week, Vivian took Interaction Club beyond the code through personal invitations, campus-club pitches, social posts and targeted partner outreach. Conversations informed the intake, invitation wording, scheduling and group-compatibility requirements. The goal is to turn interest into real plans people attend, not simply collect a waitlist.
+
+### Partner outreach — October 8
+
+| Metric | Count |
+| --- | ---: |
+| Initial cold emails sent | 152 |
+| Substantive human responses, including JobRight | 13 |
+| Declined the proposed offer | 9 |
+| Redirected to another program | 1 |
+| Advice follow-ups sent to people who declined | 5 |
+| Potential partnership conversations: Mox, Malaika and Pear VC | 3 |
+| Confirmed paid partnerships | 0 |
+
+| Day | Initial cold emails sent |
+| --- | ---: |
+| Tuesday, October 6 | 44 |
+| Wednesday, October 7 | 31 |
+| Thursday, October 8 | 77 |
+| **Total** | **152** |
+
+We are preparing and scheduling a broader outreach pipeline approaching 250 emails; **152 initial cold emails have been sent** in this updated snapshot. Advice follow-ups are reported separately. Response figures above are from the earlier October 8 snapshot and have not been refreshed alongside the send total. Response categories describe different stages and may overlap; they are not an additive funnel.
+
+Conversations with Mox, Malaika and Pear VC are exploratory, not confirmed partnerships or endorsements. We are working toward discovery calls to establish the relevant community's needs, delivery scope and willingness to pay. Alongside outreach, we developed a private business plan and buyer-specific negotiation playbooks covering pilot qualification, delivery economics, host compensation and repeatable dinner operations.
+
+### Community sign-ups and dinner invitations — October 8
+
+| Metric | Count |
+| --- | ---: |
+| Personal messages and hand-selling by Vivian | Untracked |
+| People signed up, excluding the host | 30 |
+| Unique people invited to dinners, excluding the host | 9 |
+| Dinner invitations issued across two dinners | 10 |
+| Invitations declined | 1 |
+| Invitations accepted through the website | 3 |
+| Invitations awaiting a response | 6 |
+
+One person was invited to both dinners, so 10 invitations represent 9 unique guests. Accepted means a website RSVP, **not attendance**. These are founder-reported October 8 operating figures. The next validation milestones are delivered dinners, guest feedback, independent second hangouts and paid, repeatable pilots.
+
 ## Hackathon week: October 5–11, 2026
 
 Idea research and an existing website predate this hackathon. This timeline distinguishes in-window iteration from that earlier work. Build entries are supported by repository history; signup counts are founder-reported, and future events remain planned until delivered.
@@ -65,7 +106,7 @@ Idea research and an existing website predate this hackathon. This timeline dist
 | Mon, Oct 5 | Iterated the invitation experience, interest entry and meal-availability UI; added before/after feedback, check-in and cancellation-priority handling. |
 | Tue, Oct 6 | Improved durable Sheets delivery and retries, shortened intake, added date-specific dinner choices and optional community affinity, and refined referral and partner invitation pages. Participant outreach informed the pilot. |
 | Wed, Oct 7 | Added roster-gated dinner access, explicit participation/photo choices, clearer RSVP controls and saved-response celebrations; separated consent fields from optional answers in the response export. Community-operator outreach surfaced the member-only dinner use case. |
-| Thu, Oct 8 | Updated invitation access and aligned the first dinner's website details with its Calendar timing. Consolidated matching, hosting and business operations. Vivian reports **20 signups** as of this date—not 20 attendees. The first dinner is scheduled; delivery and attendance are not yet recorded here. |
+| Thu, Oct 8 | Updated invitation access and aligned the first dinner's website details with its Calendar timing. Consolidated matching, hosting and business operations. Vivian reports **30 signups**, **152 initial cold emails sent** and **three potential partnership conversations** in the snapshots above. The first dinner is scheduled; delivery and attendance are not yet recorded here. |
 | Fri, Oct 9 | **Planned:** a second dinner, subject to compatible guests and confirmed logistics, plus further community-pilot qualification. |
 | Sat, Oct 10 | **Pending:** finalize the verified 2–3 minute pitch/demo link and submission package, complete the privacy/security review, and obtain publication approval. Submission deadline: 11:59 PM Pacific. |
 | Sun, Oct 11 | **Scheduled by organizers:** Demo Day at SCET, Grimes Engineering Center, top floor, 1–4 PM; table rounds 1:30–2:30 PM. Finalists pitch for three minutes. Selection and participation outcomes are not claimed. |
