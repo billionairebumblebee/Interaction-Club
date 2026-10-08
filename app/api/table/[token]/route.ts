@@ -31,7 +31,13 @@ export async function PATCH(request: Request, context: Context) {
     if (body.action === "rsvp" && body.value === "yes" && body.agreement === false) return json({ error: "You must accept the terms for the dinner before selecting Yes." }, 400);
     if ((body.action === "rsvp" && body.value === "yes") || body.action === "check-in") {
       if (!invitationAgreementComplete(member)) {
-        try { member = { ...member, ...acceptInvitationAgreement(body, new Date().toISOString()) }; }
+        try {
+          const renewed = acceptInvitationAgreement(body, new Date().toISOString());
+          // Retain the exact prior version/timestamp when a guest explicitly renews.
+          const history = [...(member.termsAcceptanceHistory || [])];
+          if (member.termsAcceptance && !history.some(item => item.version === member.termsAcceptance?.version && item.acceptedAt === member.termsAcceptance?.acceptedAt)) history.push({ ...member.termsAcceptance });
+          member = { ...member, ...renewed, termsAcceptanceHistory: history };
+        }
         catch (error) { return json({ error: error instanceof Error ? error.message : "Please complete the agreements." }, 400); }
       }
     }

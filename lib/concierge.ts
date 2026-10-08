@@ -28,6 +28,7 @@ export type ApplicationRecord = CommunityProfile & {
 };
 
 export type MemberState = {
+  termsAcceptanceHistory?: TermsAcceptance[];
   decline?: { reason: string; note: string; recordedAt: string };
   applicationId: string;
   token: string;
@@ -111,8 +112,8 @@ function mergeParticipation(table: TableRecord, records: ParticipationRecord[]) 
 }
 export async function saveMember(tableId: string, member: MemberState) {
   // Separate records keep one attendee from overwriting another attendee's update.
-  const { rsvp, attendance, feedback, checkedInAt, policyAcceptedAt, attendanceReviewedAt, cancellation, termsAcceptance, photoConsent, decline } = member;
-  await writeRecord(`participation/${tableId}/${member.applicationId}.json`, { tableId, applicationId: member.applicationId, state: { rsvp, attendance, feedback, checkedInAt, policyAcceptedAt, attendanceReviewedAt, cancellation, termsAcceptance, photoConsent, decline } } satisfies ParticipationRecord);
+  const { rsvp, attendance, feedback, checkedInAt, policyAcceptedAt, attendanceReviewedAt, cancellation, termsAcceptance, termsAcceptanceHistory, photoConsent, decline } = member;
+  await writeRecord(`participation/${tableId}/${member.applicationId}.json`, { tableId, applicationId: member.applicationId, state: { rsvp, attendance, feedback, checkedInAt, policyAcceptedAt, attendanceReviewedAt, cancellation, termsAcceptance, termsAcceptanceHistory, photoConsent, decline } } satisfies ParticipationRecord);
 }
 
 export async function saveTable(table: TableRecord) {
