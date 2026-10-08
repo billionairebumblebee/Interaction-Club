@@ -1,0 +1,16 @@
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const ts = require('typescript');
+const exportsObject = {};
+const source = fs.readFileSync('lib/arrival-style.ts', 'utf8');
+new Function('exports', ts.transpileModule(source, { compilerOptions: { module: ts.ModuleKind.CommonJS } }).outputText)(exportsObject);
+for (const style of ['Early', 'On time', 'Late', 'Unpredictable']) assert.equal(exportsObject.cleanArrivalStyle(style), style);
+for (const value of [undefined, null, '', 'unknown', 12, ['Early']]) assert.equal(exportsObject.cleanArrivalStyle(value), null);
+const form = fs.readFileSync('app/join/page.tsx', 'utf8');
+assert(form.includes('arrivalStyle: ""'), 'No arrival answer is preselected');
+const nextValidation = form.slice(form.indexOf('function next()'), form.indexOf('async function submit'));
+const submitValidation = form.slice(form.indexOf('async function submit'), form.indexOf('const response = await fetch'));
+assert(!nextValidation.includes('arrivalStyle') && !submitValidation.includes('arrivalStyle'), 'Arrival answer remains optional');
+assert(form.includes('Let us get<br/><em>to know you.</em>'));
+assert(fs.readFileSync('app/api/applications/route.ts', 'utf8').includes('arrivalStyle: cleanArrivalStyle(payload.arrivalStyle)'));
+console.log('PASS: arrival choices, optional validation, no default, personality-test heading and persistence.');

@@ -1,0 +1,19 @@
+/* The everyday voice stays as warm as the illustrated identity. */
+body,
+body .ic-home,
+body .experience-site,
+body .event-survey {
+  font-family: var(--font-body), "Avenir Next", sans-serif;
+}
+body .ic-info-heading .ic-info-lede,
+body .ic-envelope-instruction {
+  font-family: var(--font-editorial), Georgia, serif;
+}
+body .ic-page-links,
+body .ic-nav-actions,
+body .ic-footer-bottom,
+body .ic-info-card p,
+body .ic-faq-list p,
+body .ic-editorial-chapter p {
+  font-family: var(--font-body), "Avenir Next", sans-serif;
+}

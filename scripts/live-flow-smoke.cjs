@@ -1,0 +1,27 @@
+const {chromium}=require(process.env.PLAYWRIGHT_PATH||'playwright');
+const assert=require('node:assert/strict');
+(async()=>{
+ const browser=await chromium.launch({headless:true,channel:'chrome'}), page=await browser.newPage({viewport:{width:390,height:844}});
+ let submitted;
+ await page.route('**/api/applications',async route=>{submitted=route.request().postDataJSON();await route.fulfill({status:201,contentType:'application/json',body:JSON.stringify({id:'local-test'})});});
+ await page.goto('http://127.0.0.1:3000/join');
+ await page.getByLabel('Your full name').fill('Local Test');await page.getByLabel('Your email').fill('test@example.com');
+ await page.getByLabel('Where are you based right now?').selectOption('Berkeley');
+ await page.locator('.split select').nth(0).selectOption('1');await page.locator('.split select').nth(1).selectOption('2015');
+ await page.getByLabel('I confirm that I am 18 or older.').check();await page.getByRole('button',{name:/continue/}).click();
+ assert((await page.locator('.form-error').innerText()).includes('18 or older'));
+ await page.locator('.split select').nth(1).selectOption('2004');await page.getByRole('button',{name:/continue/}).click();
+ await page.getByRole('button',{name:'Builder / founder',exact:true}).click();await page.getByRole('button',{name:'Dinner',exact:true}).click();await page.getByRole('button',{name:/Under \$15/}).click();await page.getByRole('button',{name:'Friday dinner, 5–9 PM',exact:true}).click();await page.getByRole('button',{name:'Inclusive / everyone',exact:true}).click();
+ await page.getByRole('button',{name:/continue/}).click();await page.getByRole('button',{name:/continue/}).click();await page.getByRole('button',{name:/continue/}).click();
+ await page.getByRole('button',{name:/join Interaction/}).click();assert(await page.locator('.form-error').isVisible());
+ await page.locator('.agreement input').check();await page.getByRole('button',{name:/join Interaction/}).click();await page.getByText('YOUR DATA RECEIPT',{exact:false}).count();
+ assert.equal(submitted.intent,'Builder / founder');assert.deepEqual(submitted.interests,[]);assert.equal(submitted.gender,'');
+ await page.route('**/api/table/review-test',async route=>route.fulfill({contentType:'application/json',body:JSON.stringify({table:{activity:'Dinner',intent:'Builder / founder',venueName:'Example venue',venueArea:'Berkeley',venueAddress:'Example public address',startsAt:'2099-10-10T01:00:00Z',endsAt:'2099-10-10T02:30:00Z',responseDeadline:'2099-10-09T01:00:00Z',cost:18,costDetails:'Includes tax and tip; pay the restaurant directly.',hosted:true,hostName:'Vivian',sponsorDisclosure:'No sponsor or recruiting.',dressCode:'Come as you are',venueNotes:'Step-free entrance. Ask staff about allergens.',status:'invited'},member:{rsvp:'pending',attendance:'unknown'}})}));
+ await page.goto('http://127.0.0.1:3000/table/review-test');await page.getByRole('button',{name:/Open your invitation/}).click();
+ for(const text of ['Example venue','$18.00','Hosted by Vivian','Come as you are','No sponsor or recruiting.'])assert((await page.locator('main').innerText()).includes(text));
+ assert.equal(await page.locator('.exp-guests').count(),0);assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
+ await page.screenshot({path:'.review-artifacts/real-invitation-mobile.png',fullPage:true});
+ await page.goto('http://127.0.0.1:3000/join');await page.screenshot({path:'.review-artifacts/survey-mobile.png',fullPage:true});
+ await page.goto('http://127.0.0.1:3000');await page.screenshot({path:'.review-artifacts/updated-home-mobile.png',fullPage:true});
+ console.log('PASS: adult gate, required intent, optional interests/food, inclusive gender optional, agreement, submitted payload, complete invitation details, private guest list, mobile width. No live data submitted.');await browser.close();
+})().catch(e=>{console.error(e);process.exit(1)});

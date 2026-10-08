@@ -1,0 +1,61 @@
+# Interaction Club
+
+> Interaction Club is a relationship coordination platform for turning a small group of strangers into a recurring friend group through small, concierge-built Tables that can become Circles.
+
+## Canonical Project
+
+- Repository: https://github.com/billionairebumblebee/interaction
+- App framework: Next.js
+- Primary app route: app/page.tsx
+- Admin console: app/admin/
+- Product docs: docs/
+- Data/application logic: lib/concierge.ts
+
+## Product Purpose
+
+Interaction Club removes the awkward parts of making a plan with new people. The MVP asks whether Interaction can reliably turn a small group of strangers into a recurring friend group.
+
+The first version focuses on:
+
+- Open-beta onboarding.
+- Concierge-built four-to-six-person Tables.
+- RSVP, attendance, and feedback.
+- Circle creation when a Table works.
+- Second-meetup planning and referrals.
+- Free friend-finding and affordable public-venue Berkeley hangouts.
+
+The product deliberately avoids permanent DMs, public feeds, payments, reservations, bill splitting, restaurant partnerships, identity verification, background checks, and duo tables in the MVP.
+
+## Current App Surface
+
+- / - Open-beta application and onboarding flow.
+- /admin - Founder/admin console.
+- /privacy - Privacy notice.
+- /safety - Safety guidelines.
+- /terms - Terms of use.
+- /data - Data stance and user data explanation.
+
+## Key Docs
+
+- `README.md` - Product summary, local development, deploy notes, and data stance.
+- `docs/MVP_NOW.md` - What is being built now.
+- `docs/CONCIERGE_LAUNCH.md` - Manual launch operations.
+- `docs/MATCHING.md` - Matching principles.
+- `docs/SAFETY.md` - Safety posture.
+- `docs/PRIVACY.md` - Privacy posture.
+- `docs/METRICS.md` - Success metrics.
+- `docs/EXPERIMENTS.md` - Experiment plan.
+- `docs/MONETIZATION.md` - Revenue thinking.
+
+## Data And Safety Stance
+
+Interaction collects only what makes a plan work: formal invitation name, broad base area, age band, email, availability, activity preferences, budget, and optional comfort/accessibility details. It does not ask for addresses, sell profile data, or use preferences for price discrimination.
+
+Users should meet in public, pay their own way, and leave if something feels wrong. Product copy should stay clear that Interaction does not verify, background-check, or endorse participants.
+
+## Developer Notes
+
+- Requires Node.js 22 or newer.
+- Local dev: `npm install` then `npm run dev`
+- Production check: `npm run build`
+- Vercel deployment uses the Next.js preset plus private Vercel Blob storage for application JSON records.

@@ -1,0 +1,9 @@
+.ic-loading-overlay{position:fixed;inset:0;z-index:10000;display:grid;place-items:center;background:#fff9ed55;pointer-events:none;padding:24px;box-sizing:border-box}
+.ic-loading-card{display:grid;justify-items:center;gap:18px;padding:26px 32px;background:#fff9edf5;border:2px solid #142659;border-radius:28px;box-shadow:0 8px 0 #14265922,0 18px 60px #14265926;color:#142659;max-width:calc(100vw - 48px)}
+.ic-loading-seal{display:grid;place-items:center;width:88px;height:88px;box-sizing:border-box;border:7px solid #eb387e;border-radius:50%;background:radial-gradient(circle at 32% 25%,#ff83ba 0%,#f23d91 45%,#db1466 100%);box-shadow:inset 0 3px 4px #ffc9e699,inset 0 -3px 5px #a7084b55,0 5px 8px #70274040;animation:ic-seal-spin 1.7s linear infinite}
+.ic-loading-seal .ic-flower{display:block;width:60px;height:60px;--mark-a:#fff9ed;--mark-b:#405bec;--mark-c:#c8d0e0}
+.ic-loading-card p{margin:0;font:600 18px/1.4 var(--font-body),sans-serif;text-align:center}
+html[data-appearance=dark] .ic-loading-overlay{background:#14265966}
+body:has(.ic-route-loading) .ic-network-loading{display:none}
+@keyframes ic-seal-spin{to{transform:rotate(360deg)}}
+@media(prefers-reduced-motion:reduce){.ic-loading-seal{animation:none}}

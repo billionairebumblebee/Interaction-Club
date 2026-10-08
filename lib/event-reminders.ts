@@ -1,0 +1,3 @@
+export const PHOTO_REMINDER = "Tell your host, table, and anyone taking photos about your photo preferences. If you don’t want to be photographed, say no and step out of the shot. Everyone must respect that choice; silence isn’t permission.";
+
+export const ALLERGY_REMINDER = "Have food allergies? Tell the restaurant before ordering, and tell your host and table before food is shared. Confirm ingredients and cross-contact risks directly. Use a separate, clean serving utensil for each dish—don’t share eating utensils or move utensils between dishes. If safety can’t be confirmed, don’t eat or share that food. These precautions don’t guarantee allergy-safe food.";

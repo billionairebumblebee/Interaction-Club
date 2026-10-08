@@ -1,0 +1,26 @@
+[
+  {
+    "name": "park",
+    "transparent_background": true,
+    "referenced_image_paths": [
+      "public/side-quests-balloon-adventure.png"
+    ],
+    "prompt": "Use case: stylized-concept. Reference image is STYLE REFERENCE. Create a standalone amusement park illustration only, with NO BUS, NO VEHICLES in the foreground. Keep the same cobalt, lavender, cream, tiny pink accents and inflated bubble-letter / illustrated balloon material style. A beautifully coherent rounded roller coaster, large Ferris wheel, and small carousel/pavilion, in a compact balanced composition. Simplify fine details so it reads clearly on a phone. Smooth soft glossy shading, subtle seams, premium whimsical 3D editorial illustration, no photographic foil. Thin smooth white contour around the silhouette. Genuinely transparent background, no hazy glow or rectangular backdrop. All rides fully inside canvas with breathing room. No words, logos, people, tickets, or watermark. Landscape 3:2 composition. This is a reusable cutout asset for Interaction Club."
+  },
+  {
+    "name": "bus",
+    "transparent_background": true,
+    "referenced_image_paths": [
+      "public/side-quests-balloon-adventure.png"
+    ],
+    "prompt": "Use case: stylized-concept. Reference image is STYLE REFERENCE. Generate a standalone cute coach bus ONLY, isolated on a genuinely transparent background. No amusement park, no scenery, no ground rectangle, no haze. Preserve this same delightful inflated bubble-letter / illustrated balloon aesthetic: pillowy rounded bus body, cobalt blue and cream with lavender highlights, navy windows, a tiny pink accent. Three-quarter front view, front facing right, clearly recognizable adult group coach bus rather than school bus. Simplify details, exaggerated soft rounded shape, subtle seams and soft glossy shading. Thin smooth white silhouette edge. Entire bus and all wheels inside canvas with ample breathing room. No words, logos, school branding, people, watermark. Wide 3:2 asset, polished and playful."
+  },
+  {
+    "name": "table",
+    "transparent_background": true,
+    "referenced_image_paths": [
+      "public/interaction-table-scene.png"
+    ],
+    "prompt": "Use case: precise-object-edit. Edit this exact dinner-table illustration. The only substantive change: there must be EXACTLY SIX separate cobalt blue inflated balloon chairs surrounding the same circular cream pedestal table, and SIX corresponding cream plates with silver-lavender cutlery and cream invitations sealed in pink. Original currently has five chairs. Arrange six distinct visible chairs evenly around the circular table: two across the far/top arc, one at middle-left, one at middle-right, two across the near/bottom arc. Count exactly 2+1+1+2 = SIX. All six chair backs must be visible and easy to count, no hidden chair, no seventh chair. Preserve the table's circular shape, cream material, pedestal, blue balloon chair design, pink seals, sculptural cream vase with navy/pink leaves and cream footed grape bowl; same camera angle, same materials and palette, same soft lighting. Adjust placement minimally to fit sixth chair and place setting; do not redesign the scene. No people, no text, no new props. Preserve transparent background. Full chairs including legs inside image margins, smooth clean alpha edges."
+  }
+]

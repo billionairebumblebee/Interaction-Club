@@ -1,0 +1,49 @@
+import { findTableByToken, listTables, saveMember, type MemberState } from "@/lib/concierge";
+import { attendanceAction, attendancePriority } from "@/lib/attendance";
+import { queueSheetRecord } from "@/lib/sheets";
+
+import { acceptInvitationAgreement, invitationAgreementComplete } from "@/lib/invitation-agreement";
+
+const json = (body: unknown, status = 200) => Response.json(body, { status, headers: { "Cache-Control": "private, no-store" } });
+const publicMember = (member: MemberState) => ({ rsvp: member.rsvp, attendance: member.attendance, feedback: member.feedback, checkedInAt: member.checkedInAt, cancellation: member.cancellation, termsAcceptance: member.termsAcceptance, photoConsent: member.photoConsent, decline: member.decline });
+type Context = { params: Promise<{ token: string }> };
+export async function GET(_: Request, context: Context) {
+  try {
+    const { token } = await context.params;
+    const found = await findTableByToken(token);
+    if (!found) return json({ error: "This invitation is no longer available." }, 404);
+    const { table, memberIndex } = found;
+    const member = table.members[memberIndex];
+    return json({ table: { activity: table.activity, format: table.format, venueName: table.venueName, venueArea: table.venueArea, startsAt: table.startsAt, status: table.status, intent: table.intent, theme: table.theme, venueAddress: table.venueAddress, endsAt: table.endsAt, responseDeadline: table.responseDeadline, cost: table.cost, costDetails: table.costDetails, hosted: table.hosted, hostName: table.hostName, hostContactEmail: table.hostContactEmail, sponsorDisclosure: table.sponsorDisclosure, dressCode: table.dressCode, venueNotes: table.venueNotes, circle: table.circle }, member: publicMember(member), priority: attendancePriority(member.applicationId, await listTables()) });
+  } catch { return json({ error: "Unable to load your invitation. Please try again." }, 503); }
+}
+
+export async function PATCH(request: Request, context: Context) {
+  try {
+    const { token } = await context.params;
+    const found = await findTableByToken(token);
+    if (!found) return json({ error: "This invitation is no longer available." }, 404);
+    let body: Record<string, unknown>;
+    try { const parsed = await request.json(); if (!parsed || typeof parsed !== "object" || Array.isArray(parsed)) throw new Error(); body = parsed; }
+    catch { return json({ error: "Please check your response." }, 400); }
+    const { table, memberIndex } = found;
+    let member = table.members[memberIndex];
+    if (body.action === "rsvp" && body.value === "yes" && body.agreement === false) return json({ error: "You must accept the terms for the dinner before selecting Yes." }, 400);
+    if ((body.action === "rsvp" && body.value === "yes") || body.action === "check-in") {
+      if (!invitationAgreementComplete(member)) {
+        try { member = { ...member, ...acceptInvitationAgreement(body, new Date().toISOString()) }; }
+        catch (error) { return json({ error: error instanceof Error ? error.message : "Please complete the agreements." }, 400); }
+      }
+    }
+    if (body.action === "feedback" && typeof body.meetAgain === "boolean") member = { ...member, feedback: { meetAgain: body.meetAgain, note: typeof body.note === "string" ? body.note.trim().slice(0, 500) : "", submittedAt: new Date().toISOString() } };
+    else {
+      try { member = attendanceAction(table, member, body); }
+      catch (error) { return json({ error: error instanceof Error ? error.message : "Unable to update attendance." }, 409); }
+    }
+    await saveMember(table.id, member);
+    table.members[memberIndex] = member;
+    try { await queueSheetRecord({ id: table.id, kind: "group", record: table }); } catch { /* Private record is durable; the group row can be backfilled. */ }
+    const history = (await listTables()).filter(item => item.id !== table.id);
+    return json({ ok: true, member: publicMember(member), priority: attendancePriority(member.applicationId, [...history, table]) });
+  } catch { return json({ error: "We couldn’t confirm your update. Refresh to check its status before retrying." }, 503); }
+}

@@ -1,0 +1,17 @@
+import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
+import { stripTypeScriptTypes } from "node:module";
+const source = stripTypeScriptTypes(readFileSync(new URL("../lib/pilot-week.ts", import.meta.url), "utf8"));
+const { PILOT_WEEK, pilotWeekProblem, cleanPilotDinners } = await import(`data:text/javascript,${encodeURIComponent(source)}`);
+const record = dates => ({ pilotWeekAvailability: { ...PILOT_WEEK, available: dates.length > 0, dinnerDates: dates } });
+assert.equal(pilotWeekProblem(record(['2026-10-08']), "2026-10-08T18:00:00-07:00"), "");
+assert.match(pilotWeekProblem(record(['2026-10-08']), "2026-10-09T18:00:00-07:00"), /Unavailable/);
+assert.equal(pilotWeekProblem(record(['2026-10-08','2026-10-09']), "2026-10-09T18:00:00-07:00"), "");
+assert.match(pilotWeekProblem(record([]), "2026-10-08T18:00:00-07:00"), /Unavailable/);
+assert.match(pilotWeekProblem({pilotWeekAvailability:{...PILOT_WEEK,available:true}}, "2026-10-08T18:00:00-07:00"), /Confirm/);
+assert.match(pilotWeekProblem(record(['2026-10-08']), "2026-10-08T19:00:00-07:00"), /6–8/);
+assert.deepEqual(cleanPilotDinners(['2026-10-08','2026-10-08','2026-10-10',null]), ['2026-10-08']);
+assert.match(pilotWeekProblem({}, "2026-10-07T18:00:00-07:00"), /Confirm/);
+assert.equal(pilotWeekProblem(record([]), "2026-10-11T18:00:00-07:00"), "");
+assert.match(pilotWeekProblem(record(['2026-10-09']), "2026-10-10T01:00:00Z"), /^$/);
+console.log("PASS: weekly opt-in, unchecked exclusion, legacy confirmation, later-week retention, Pacific date boundaries");

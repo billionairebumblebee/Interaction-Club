@@ -1,0 +1,5 @@
+import TableInvitation from "../../table/[token]/page";
+
+export default function SyntheticDinnerPreview() {
+  return <TableInvitation params={Promise.resolve({ token: "synthetic-demo" })} demoInvitation={{ table: { activity: "Dinner", theme: "Operation Dessert · synthetic demonstration", venueNotes: "Synthetic meeting point: the café’s front entrance, beside the host’s pink circle sign. Optional Easter egg: tell the demo host ‘dessert detective’ to reveal a conversation prompt. No reward, meal or real event is promised.", intent: "Chill / social", venueName: "Example café (not booked)", venueArea: "Example public venue", venueAddress: "Demonstration location only", startsAt: "2026-10-15T18:00:00-07:00", endsAt: "2026-10-15T20:00:00-07:00", responseDeadline: "2026-10-15T16:00:00-07:00", cost: 15, costDetails: "Synthetic $15 estimate, tax and tip included; no payment collected", hosted: true, hostName: "Demo host", sponsorDisclosure: "No sponsor. This is a synthetic example, not a scheduled event.", status: "invited" }, member: { rsvp: "pending", attendance: "unknown" } }}/>;
+}

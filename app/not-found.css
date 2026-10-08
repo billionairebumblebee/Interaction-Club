@@ -1,0 +1,16 @@
+.ic-lost-page{display:grid;place-items:center;min-height:65svh;padding:55px 24px 85px;background:var(--paper-grain),var(--ic-paper,#fff9ed)}
+.ic-lost-postcard{box-sizing:border-box;position:relative;width:min(620px,100%);padding:74px 32px 44px;border:2px solid #142659;border-radius:28px;background:#fffdf6;box-shadow:8px 10px 0 #c8d0e0;transform:rotate(-2deg);text-align:center;color:#142659}
+.ic-lost-stamp{position:absolute;right:22px;top:20px;padding:9px;border:2px dashed #405bec;border-radius:8px;color:#405bec;font:700 10px/1.4 var(--font-body),sans-serif;transform:rotate(8deg)}
+.ic-lost-number{display:flex;align-items:center;justify-content:center;gap:12px;margin:0 0 25px;font:600 clamp(86px,18vw,148px)/1 var(--font-bubble),sans-serif;color:#405bec;text-shadow:2px 2px 0 #fff9ed,5px 6px 0 #14265920}
+.ic-lost-seal{display:grid;place-items:center;flex:0 0 auto;width:clamp(75px,17vw,122px);aspect-ratio:1;box-sizing:border-box;border:8px solid #eb387e;border-radius:50%;background:radial-gradient(circle at 32% 25%,#ff83ba,#f23d91 45%,#db1466);box-shadow:inset 0 3px 4px #ffc9e699,0 5px 8px #70274040;transform:rotate(12deg)}
+.ic-lost-seal .ic-flower{width:80%;height:80%;--mark-a:#fff9ed;--mark-b:#405bec;--mark-c:#c8d0e0}
+.ic-lost-label{margin:0 0 16px;font:700 11px/1.5 var(--font-body),sans-serif;letter-spacing:.12em}
+.ic-lost-postcard h1{margin:0;font:500 clamp(32px,6vw,52px)/1.15 var(--font-bubble),sans-serif;letter-spacing:-.035em}
+.ic-lost-copy{margin:20px 0 28px;font:400 19px/1.5 var(--font-body),sans-serif}
+.ic-lost-button{display:inline-flex;align-items:center;justify-content:center;gap:22px;min-height:54px;padding:12px 24px;border:2px solid #142659;border-radius:18px;background:#142659;color:#fff9ed!important;box-shadow:0 5px 0 #f23d91;font:500 18px/1.4 var(--font-bubble),sans-serif;text-decoration:none;transition:transform .15s,box-shadow .15s}
+.ic-lost-button:hover{transform:translateY(-2px);box-shadow:0 7px 0 #f23d91}
+.ic-lost-button:active{transform:translateY(3px);box-shadow:0 2px 0 #f23d91}
+.ic-lost-button:focus-visible{outline:3px solid #f23d91;outline-offset:6px}
+html[data-appearance=dark] .ic-lost-page{background:var(--paper-grain),#202641}
+@media(max-width:450px){.ic-lost-page{padding:40px 22px 65px}.ic-lost-postcard{padding:72px 18px 36px;box-shadow:5px 7px 0 #c8d0e0}.ic-lost-button{font-size:16px;gap:16px}.ic-lost-number{gap:8px}}
+@media(prefers-reduced-motion:reduce){.ic-lost-button{transition:none}}

@@ -1,0 +1,16 @@
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const ts = require('typescript');
+const exportsForTest = {};
+new Function('exports', ts.transpileModule(fs.readFileSync('lib/memories.ts', 'utf8'), { compilerOptions: { module: ts.ModuleKind.CommonJS } }).outputText)(exportsForTest);
+const { clubMemories, publishedMemories } = exportsForTest;
+const now = new Date('2026-10-08T20:00:00Z');
+assert.deepEqual(publishedMemories(now), []);
+const memory = { id: 'qa', title: 'Synthetic test only', date: '2026-10-07', status: 'completed', publicationApproved: true, blurb: 'Test', photos: [{ src: '/qa.jpg', alt: 'QA', permissionConfirmed: false }] };
+clubMemories.push(memory, { ...memory, id: 'unapproved', publicationApproved: false }, { ...memory, id: 'future', date: '2027-01-01' }, { ...memory, id: 'scheduled', status: 'scheduled' });
+assert.equal(publishedMemories(now).length, 1);
+assert.deepEqual(publishedMemories(now)[0].photos, []);
+memory.photos[0].permissionConfirmed = true;
+assert.equal(publishedMemories(now)[0].photos.length, 1);
+assert.equal(clubMemories[0].photos.length, 1, 'Filtering never mutates content');
+console.log('PASS: empty archive, only past completed and approved events, photo permission filtering; synthetic fixtures only.');

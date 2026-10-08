@@ -1,0 +1,1 @@
+export const schoolStages = ["High school", "College: first year", "College: second year", "College: third year", "College: fourth year", "College: fifth year or beyond", "Graduate school", "Not currently a student", "Other"] as const;

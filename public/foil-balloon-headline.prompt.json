@@ -1,0 +1,6 @@
+{
+  "asset": "foil-balloon-headline.png",
+  "generator": "Built-in image_gen",
+  "reference": "User-provided gold foil alphabet; style reference only",
+  "prompt": "Use case: product-mockup. Asset type: transparent website headline artwork.\nCreate ONLY the exact phrase \"WE WANT YOU AT OUR TABLE\" as realistic inflated shiny gold foil party-balloon letters, matching the uploaded gold alphabet image as the material/style reference (not an edit target). Three lines, exactly:\nWE WANT\nYOU AT\nOUR TABLE\nFront-facing straight-on camera; left-aligned lines; every character separate and fully legible with natural small gaps and clear word spaces. Warm rich gold metallic Mylar, realistic heat-sealed rim seams, crinkles, rounded inflated volumes, glossy studio highlights and darker gold reflections, tiny inflation tabs. No strings. No confetti. No background, no wall, no floor, no gradient backdrop, no other objects, no watermark. Genuinely transparent alpha background. Compact typographic composition with minimal transparent margins while leaving all letters uncut. Intended to replace a heading on a colorful invitation website, crisp at mobile size. Do not include the alphabet or extra text."
+}

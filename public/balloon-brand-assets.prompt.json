@@ -1,0 +1,16 @@
+{
+  "mode": "built-in image_gen",
+  "reference": "/illustrated-balloon-headline.png",
+  "referenceRole": "Illustrated balloon material and style only",
+  "transparentBackground": true,
+  "assets": [
+    {
+      "path": "/balloon-wordmark-lowercase.png",
+      "prompt": "Create a website brand asset, transparent background. Use the attached reference ONLY for its smooth illustrated inflated balloon-letter material, not its wording. Exact text: interaction. All lowercase, one straight horizontal line, no other text. Deep midnight navy blue plump inflated rounded letters, subtle satin blue highlights, hand-shaped playful curves, crisp readable counters. Digital 3D cartoon illustration, NOT photographed foil balloons, no wrinkles, no strings. Consistent baseline. Wide horizontal composition tightly fitted around the complete word with slight transparent padding. No symbols, no logo, no decorative shapes. This must be legible as a website wordmark at small size."
+    },
+    {
+      "path": "/balloon-cutlery.png",
+      "prompt": "Transparent website illustration asset. Exactly two objects: one recognizable four-pronged dinner FORK at far left, one rounded dinner BUTTER KNIFE at far right. Both upright, handles pointing down, same height, straight on top-down orthographic view, no perspective tilt. Keep the central 66 percent of the canvas COMPLETELY EMPTY TRANSPARENT so a circular plate can be placed between them in HTML. Objects tall and slender occupying only outer 15 percent each. Material: smooth softly inflated playful balloon illustration, cool silver-blue satin body with simple bright highlights, dark navy subtle edges. Digital cartoon 3D, not photography, no real foil wrinkles, not metallic stock photos. Fork must have four clear separated tines; knife must have a broad rounded blade at the top and a narrower handle below. No text, no plate, no food, no shadows in the empty center, no strings. Square composition, both complete with generous small margins. Reference image supplies illustrated balloon material mood only."
+    }
+  ]
+}

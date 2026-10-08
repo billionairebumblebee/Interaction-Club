@@ -1,0 +1,20 @@
+.ic-home .ic-open-letter>p:not(.ic-handwriting){font-size:18px;line-height:1.65}
+.ic-home .ic-open-letter .ic-letter-small{font-size:16px!important;line-height:1.6}
+.ic-home .ic-open-letter .ic-letter-top{font-size:14px;letter-spacing:.045em;gap:16px;flex-wrap:wrap}
+.ic-home .ic-open-letter .ic-letter-details dt{font-size:14px;line-height:1.4}
+.ic-home .ic-open-letter .ic-letter-details dd{font-size:16px;line-height:1.5}
+.ic-home .ic-open-letter .ic-cta{font-size:18px;gap:15px}
+.ic-home .ic-open-letter .ic-letter-signoff{font-size:18px!important}
+.ic-home .ic-open-letter .ic-letter-signoff>span{font-size:16px;line-height:1.6}
+.ic-letter-cobrand{display:flex;align-items:center;gap:12px;flex-shrink:0}
+.ic-letter-cobrand img{object-fit:contain;flex-shrink:0}
+.ic-letter-cobrand>span{font-size:24px;letter-spacing:0}
+.ic-home .ic-open-letter .ic-concept-label{margin:16px 0 0;font-weight:600}
+.ic-home .ic-open-letter .ic-letter-coordinators{display:flex;align-items:center;flex-wrap:wrap;gap:8px}
+.ic-signoff-brand{display:inline-flex;align-items:center}
+.ic-signoff-brand .ic-flower{width:36px;height:36px}
+.ic-home .ic-open-letter .ic-pilot-boundary{padding:16px 0;border-top:1px solid #09133722;border-bottom:1px solid #09133722;margin-top:20px}
+.ic-home .ic-open-letter .ic-pilot-boundary p{font-size:16px;line-height:1.6;margin:0 0 12px}
+.ic-home .ic-open-letter .ic-pilot-boundary p:last-child{margin-bottom:0}
+.ic-home .ic-small-print{font-size:16px;line-height:1.6}
+@media(max-width:400px){.ic-home .ic-open-letter .ic-letter-top{gap:12px;font-size:13px}.ic-home .ic-open-letter .ic-letter-details{gap:20px 14px}}

@@ -1,0 +1,15 @@
+.ic-hero{min-height:660px;align-items:center;padding-top:35px;padding-bottom:55px}
+.ic-hero .ic-foil-heading{width:100%;margin:0 0 30px;padding:0;line-height:1;letter-spacing:normal}
+.ic-foil-heading img{display:block;width:100%;height:auto;filter:url(#ic-balloon-cutout) drop-shadow(0 4px 2px #09133730)}
+.ic-home .ic-visually-hidden{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip-path:inset(50%)!important;white-space:nowrap!important;border:0!important}
+.ic-envelope-scene{container-type:inline-size}
+.ic-home .ic-big-name{inset:31% 8% 19%;gap:0;justify-content:center}
+.ic-home .ic-big-name>strong{font-size:clamp(22px,var(--name-size),104px);line-height:1.09;letter-spacing:-.055em;font-weight:500;max-width:100%;overflow-wrap:anywhere;-webkit-line-clamp:2;padding-bottom:.06em}
+.ic-home .ic-break-seal{bottom:25px}.ic-home .ic-break-seal b{font-size:15px;background:var(--ic-paper);border:1px solid #09133730;border-radius:25px;padding:9px 15px;letter-spacing:0}
+.ic-big-confetti i{left:var(--x);top:-24px;width:10px;height:20px;animation:ic-party-shower var(--duration) cubic-bezier(.17,.5,.7,1) var(--delay) both;will-change:transform;opacity:0}
+.ic-big-confetti i:nth-child(4n){width:9px;height:9px;border-radius:50%;background:#ff2786}.ic-big-confetti i:nth-child(4n + 1){background:#dbfa3a}.ic-big-confetti i:nth-child(4n + 2){background:#ffd849;width:7px;height:24px}.ic-big-confetti i:nth-child(4n + 3){background:#6084fc}
+@keyframes ic-party-shower{0%{opacity:0;transform:translate3d(0,-10px,0) rotate(0)}8%{opacity:1}70%{opacity:1}100%{opacity:0;transform:translate3d(var(--drift),820px,0) rotate(var(--spin))}}
+@media(max-width:1000px){.ic-hero{min-height:610px;gap:20px}.ic-hero .ic-foil-heading{width:calc(100% + 10px);margin-left:-5px;margin-bottom:28px}.ic-home .ic-break-seal{bottom:19px}.ic-home .ic-break-seal b{font-size:12px;padding:7px 12px}}
+@media(max-width:700px){.ic-hero{min-height:0;padding-top:35px;padding-bottom:35px}.ic-hero .ic-foil-heading{margin-bottom:25px;width:calc(100% + 18px);margin-left:-9px}.ic-hero-object{margin-top:32px}.ic-home .ic-big-name{inset:33% 8% 20%}.ic-home .ic-break-seal{bottom:20px}}
+@media(max-width:360px){.ic-home .ic-break-seal{bottom:15px}.ic-home .ic-break-seal b{font-size:11px;padding:6px 10px}}
+@media(prefers-reduced-motion:reduce){.ic-big-confetti{display:none}}

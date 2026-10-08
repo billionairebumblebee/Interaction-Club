@@ -1,0 +1,36 @@
+import { pageMetadata } from "@/lib/seo";
+import PartnerInvitation from "../partner-invitation";
+import Link from "next/link";
+import { CircleMark } from "../../club-brand";
+import "../partners.css";
+import PartnerFounder, { CommunityMarketSignals } from "../partner-founder";
+
+export const metadata = pageMetadata("/sponsors", "Sponsors | Interaction Club", "Give your brand a social life. Sponsor thoughtful gatherings with relevant people, personal invitations, and real conversation.");
+const contact = "mailto:vivian_yang@berkeley.edu";
+const calendly = "https://calendly.com/vivian_yang-berkeley/30min";
+
+export default function SponsorsPage() {
+  return <div className="ic-partner-page">
+    <header className="ic-partner-hero"><div><p className="ic-eyebrow">A SEAT FOR YOUR BRAND</p><h1>You’re invited<br/><em>to sponsor.</em></h1><p>Less fighting for a spot in the feed. More being part of an evening people actually want to attend.</p><p>Help bring the right people together. We bring the invitations, the thoughtful plan, and a reason to keep the conversation going.</p><div className="ic-partner-actions"><a className="ic-cta" href={contact}>Email Vivian ↗</a><a className="ic-cta" href={calendly} target="_blank" rel="noopener noreferrer">Book a call ↗</a></div></div><PartnerInvitation kind="sponsor"/></header>
+    <div className="ic-partner-ribbon"><span>PERSONAL INVITATIONS</span><span>SHARED INTERESTS</span><span>REAL CONVERSATIONS</span></div>
+    <section className="ic-partner-section" id="the-experience"><p className="ic-eyebrow">WHY SPONSOR?</p><h2>Be the reason something good happens.</h2><div className="ic-partner-grid">
+      <article className="ic-partner-card"><span className="ic-partner-number">1</span><h3>Meet your people.</h3><p>A builder dinner, a creative gathering, a community evening. Start with a shared interest and invite people who choose to be there—not an indiscriminate guest list.</p></article>
+      <article className="ic-partner-card"><span className="ic-partner-number">2</span><h3>Make it memorable.</h3><p>Food, a hands-on activity, a thoughtful take-home detail. Put your support into something guests can experience, not another logo on another tote.</p></article>
+      <article className="ic-partner-card"><span className="ic-partner-number">3</span><h3>Get past the first hello.</h3><p>Give your community team time for real conversation. We look at attendance, voluntary follow-up, and interest in another gathering—not just impressions.</p></article>
+    </div></section>
+    <section className="ic-partner-section"><p className="ic-eyebrow">THE MOMENT</p><h2>People want their interests to leave the internet.</h2><div className="ic-partner-stats">
+      <article className="ic-partner-stat"><strong>95%</strong><p>of young adults surveyed were interested in exploring their online interests through in-person events.</p><a href="https://www.eventbrite.com/blog/press/newsroom/fourth-spaces-bridge-digital-and-physical-worlds/" target="_blank" rel="noopener noreferrer">Eventbrite, Fourth Spaces study · 2025 ↗</a></article>
+      <article className="ic-partner-stat"><strong>+35%</strong><p>growth in food-related events, including supper clubs and cooking workshops, on Eventbrite in the U.S. from 2023 to 2024.</p><a href="https://www.eventbrite.com/blog/press/newsroom/fourth-spaces-bridge-digital-and-physical-worlds/" target="_blank" rel="noopener noreferrer">Eventbrite platform data · 2025 report ↗</a></article>
+    </div></section>
+    <section className="ic-partner-section"><p className="ic-eyebrow">MAKE IT YOUR KIND OF EVENING</p><h2>A small start. A thoughtful experience.</h2><div className="ic-partner-grid">
+      <article className="ic-partner-card"><h3>Bring dinner.</h3><p>Support food for a small gathering. A straightforward way to help people meet, with agreed event-specific sponsor credit.</p></article>
+      <article className="ic-partner-card"><h3>Bring an experience.</h3><p>Explore an activity, a product people can actually try, or a venue that fits the group. The concept and scope come first.</p></article>
+      <article className="ic-partner-card"><h3>Bring them back.</h3><p>Our longer-term offering: recurring community experiences, delivered by local hosts with matching, invitations, and follow-through handled in one workflow.</p></article>
+    </div><p>We start with one scoped gathering. Recurring programs and larger productions are the next chapter—not required to start a conversation.</p></section>
+    <section className="ic-partner-section"><p className="ic-eyebrow">WHY WORK WITH THE CLUB?</p><h2>A relevant room.<br/>A reason to return.</h2><p>Your team knows your product. We help shape an experience around people who choose to be there, with personal invitations and a clear plan. Work with us alongside your community or marketing lead.</p><div className="ic-partner-grid"><article className="ic-partner-card"><h3>People who fit the purpose.</h3><p>Agree on the audience and an opt-in activity. A builder night, for example, could give interested guests a useful way to try your tool.</p></article><article className="ic-partner-card"><h3>A scoped gathering.</h3><p>One agreed experience, with invitations, hosting, and coordination. Start small without building a new internal event operation.</p></article><article className="ic-partner-card"><h3>Something worth measuring.</h3><p>Choose the outcome before the event: product feedback, participation, or consented follow-up. Attendance and useful conversations matter more than a crowded photo.</p></article></div></section>
+    <CommunityMarketSignals/>
+    <section className="ic-partner-section"><h2>Here’s how we make a plan.</h2><ol className="ic-partner-steps"><li><b>1. Pick a purpose.</b><p>Community, feedback, or an opt-in conversation with people who share your interests.</p></li><li><b>2. Set the scope.</b><p>Guest count, budget, support, timing, and sponsor recognition agreed before invitations.</p></li><li><b>3. Make it happen.</b><p>A personal invitation, a clear plan, and an organizer who knows what the evening is for.</p></li><li><b>4. Follow through.</b><p>Attendance and aggregate feedback, with a clear next step for another gathering.</p></li></ol><details><summary>A good partnership respects the guests.</summary><p>Sponsorship is disclosed before guests accept. Attendee contact information, photo rights, and promotional posts are not automatically included. Any recruiting, research, or sales activity is stated up front. Pricing and deliverables are agreed for each event.</p></details></section>
+    <PartnerFounder/>
+    <aside className="ic-partner-invite"><CircleMark/><p className="ic-eyebrow">YOUR INVITATION</p><h2>Let’s make something worth showing up for.</h2><p>Email Vivian with your company, who you’d like to bring together, and what you’d like to support—or book a time to talk.</p><div className="ic-partner-actions"><a className="ic-cta" href={contact}>Email Vivian ↗</a><a className="ic-partner-link" href={calendly} target="_blank" rel="noopener noreferrer">Book a 30-minute chat ↗</a><Link href="/investors" className="ic-partner-link">See the bigger picture ↗</Link></div></aside>
+  </div>;
+}

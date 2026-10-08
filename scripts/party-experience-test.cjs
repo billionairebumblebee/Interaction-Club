@@ -1,0 +1,161 @@
+const { chromium } = require(process.env.PLAYWRIGHT_PATH || 'playwright');
+const assert = require('node:assert/strict');
+const base = process.env.TEST_BASE_URL || 'http://127.0.0.1:3105';
+
+(async () => {
+  const browser = await chromium.launch({ headless: true, channel: 'chrome' });
+  try {
+    for (const width of [320, 390, 820, 1440]) {
+      const context = await browser.newContext({ viewport: { width, height: 1000 }, colorScheme: 'light', reducedMotion: 'reduce' });
+      await context.addInitScript(() => {
+        sessionStorage.setItem('interaction.invitation.visited', '1');
+        sessionStorage.setItem('interaction.invitation.engaged', '1');
+        sessionStorage.setItem('interaction.invitation.name', 'Test Guest');
+        window.__soundNotes = [];
+        window.__audioContexts = 0;
+        const NativeAudioContext = window.AudioContext;
+        window.AudioContext = class extends NativeAudioContext {
+          constructor(...args) { super(...args); window.__audioContexts++; }
+          createOscillator() {
+            const oscillator = super.createOscillator();
+            const start = oscillator.start.bind(oscillator);
+            oscillator.start = (...args) => { window.__soundNotes.push(oscillator.frequency.value); return start(...args); };
+            return oscillator;
+          }
+        };
+      });
+      const page = await context.newPage();
+      const errors = [];
+      page.on('pageerror', error => errors.push(error.message));
+      let requests = 0;
+      let failSubmission = true;
+      // Never send test signups to a real inbox, even when testing production.
+      await page.route('**/api/applications', route => {
+        requests++;
+        return route.fulfill({ status: failSubmission ? 503 : 200, contentType: 'application/json', body: JSON.stringify(failSubmission ? { error: 'Test response: please retry.' } : { ok: true }) });
+      });
+      const notes = () => page.evaluate(() => window.__soundNotes.length);
+      const settings = async () => { if (!await page.locator('.ic-play-settings').evaluate(el => el.open)) await page.getByLabel('Sound and appearance settings').click(); };
+      const fits = async () => assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), `No horizontal overflow at ${width}`);
+
+      await page.goto(base);
+      await page.waitForTimeout(300);
+      assert.equal(await page.evaluate(() => window.__audioContexts), 0, 'No audio context or autoplay on load');
+      await settings();
+      await page.getByRole('button', { name: 'Background music' }).click();
+      await page.waitForTimeout(450);
+      assert(await notes() > 4, 'Music schedules an original melody and chords');
+      await page.getByRole('button', { name: 'Background music' }).click();
+      await page.waitForTimeout(250);
+      const stopped = await notes();
+      await page.waitForTimeout(300);
+      assert.equal(await notes(), stopped, 'Music stops scheduling when switched off');
+      await page.getByRole('button', { name: 'Sound effects' }).click();
+      await page.getByRole('button', { name: 'Dark mode' }).click();
+      assert.equal(await page.locator('html').getAttribute('data-appearance'), 'dark');
+      assert.equal(await notes(), stopped, 'Sound effects can be muted independently');
+      await page.keyboard.press('Escape');
+      assert.equal(await page.locator('.ic-play-settings').evaluate(el => el.open), false);
+      await fits();
+      await page.screenshot({ path: `.review-artifacts/party-dark-home-${width}.png` });
+      await page.getByRole('link', { name: 'Join the club', exact: false }).first().click();
+      await page.waitForURL('**/join');
+      assert.equal(await page.locator('html').getAttribute('data-appearance'), 'dark', 'Theme survives navigation');
+      await page.reload();
+      assert.equal(await page.locator('html').getAttribute('data-appearance'), 'dark', 'Theme survives refresh');
+      await settings();
+      assert.equal(await page.getByRole('button', { name: 'Sound effects' }).getAttribute('aria-pressed'), 'false', 'Mute survives refresh');
+      await page.getByRole('button', { name: 'Sound effects' }).click();
+      await page.keyboard.press('Escape');
+      await fits();
+      await page.screenshot({ path: `.review-artifacts/party-dark-join-${width}.png`, fullPage: true });
+
+      await page.getByLabel('Your full name', { exact: false }).fill('Test Guest');
+      await page.getByLabel('Your email', { exact: true }).fill('test@example.test');
+      await page.getByLabel('Where are you based right now?', { exact: false }).selectOption('Berkeley');
+      await page.getByLabel('Birth month').selectOption('1');
+      await page.getByLabel('Birth year').selectOption(String(new Date().getFullYear() - 10));
+      await page.getByLabel('I confirm that I am 18 or older.').check();
+      await page.getByRole('button', { name: 'continue' }).click();
+      assert(await page.getByRole('alert').getByText('You need to be 18 or older to join Interaction.').isVisible());
+      await page.getByLabel('Birth year').selectOption('2000');
+      await page.getByRole('button', { name: 'continue' }).click();
+      await page.getByRole('button', { name: 'continue' }).click();
+      assert(await page.getByRole('alert').getByText('Finish every plan detail before you continue.').isVisible());
+      await page.getByRole('button', { name: 'Chill / social', exact: true }).click();
+      await page.getByRole('button', { name: 'Dinner', exact: true }).click();
+      await page.getByRole('button', { name: /Under \$15/ }).click();
+      await page.getByRole('button', { name: 'Saturday dinner, 5–9 PM', exact: true }).click();
+      await page.getByRole('button', { name: 'Inclusive / everyone', exact: true }).click();
+      await fits();
+      await page.screenshot({ path: `.review-artifacts/party-dark-plan-${width}.png`, fullPage: true });
+      await settings();
+      await page.getByRole('button', { name: 'Dark mode' }).click();
+      await page.keyboard.press('Escape');
+      assert.equal(await page.getByRole('button', { name: 'Dinner', exact: true }).getAttribute('aria-pressed'), 'true', 'Theme changes do not reset form');
+      await page.screenshot({ path: `.review-artifacts/party-light-plan-${width}.png`, fullPage: true });
+      await page.getByRole('button', { name: 'continue' }).click();
+      await page.getByRole('button', { name: 'continue' }).click();
+      assert(await page.getByRole('heading', { name: 'A little more you' }).isVisible());
+      await page.getByRole('button', { name: 'continue' }).click();
+      await page.getByRole('button', { name: 'join Interaction' }).click();
+      assert.equal(requests, 0, 'Agreement required before submission');
+      await page.getByLabel('I plan to show up—or cancel as early as I can.', { exact: false }).check();
+      const beforeFailure = await notes();
+      await page.getByRole('button', { name: 'join Interaction' }).click();
+      await page.getByRole('alert').getByText('Test response: please retry.').waitFor();
+      await page.waitForTimeout(100);
+      assert.equal(requests, 1);
+      assert.equal(await page.locator('.ic-join-success').count(), 0, 'Failure does not show success');
+      assert(await notes() - beforeFailure <= 1, 'Failure does not play the success fanfare');
+      failSubmission = false;
+      const beforeSuccess = await notes();
+      await page.getByRole('button', { name: 'join Interaction' }).click();
+      await page.getByRole('heading', { name: 'You’re in!' }).waitFor();
+      await page.waitForTimeout(150);
+      assert.equal(requests, 2);
+      assert(await notes() - beforeSuccess >= 18, 'Confirmed success plays the larger fanfare');
+      assert.equal(await page.locator('.ic-join-success .ic-confetti i').count(), 120);
+      assert.equal(await page.evaluate(() => window.scrollY), 0, 'Success starts at the top');
+      await fits();
+      await page.screenshot({ path: `.review-artifacts/party-success-${width}.png`, fullPage: true });
+      await page.locator('nav[aria-label="Main navigation"]').getByRole('link', { name: 'Interaction home' }).click();
+      await page.waitForURL('**/#top');
+      assert.equal(await page.evaluate(() => window.scrollY), 0, 'Logo returns home at the top');
+      await page.locator('.ic-footer').scrollIntoViewIfNeeded();
+      await page.locator('.ic-footer').getByRole('link', { name: 'Interaction home' }).click();
+      assert.equal(await page.evaluate(() => window.scrollY), 0, 'Logo on homepage also scrolls to the top');
+      await page.waitForTimeout(250);
+      const beforeFlip = await notes();
+      await page.locator('#your-invitation').getByRole('button', { name: 'Turn over the invitation for Test Guest' }).click();
+      await page.waitForTimeout(100);
+      assert.equal(await notes() - beforeFlip, 2, 'Envelope flip gets its own two-note cue');
+      const beforeConfetti = await notes();
+      await page.locator('#your-invitation').getByRole('button', { name: 'Break the seal and open your invitation' }).click();
+      await page.waitForTimeout(100);
+      assert.equal(await notes() - beforeConfetti, 6, 'Confetti opening has its own flourish');
+      const beforePlan = await notes();
+      await page.locator('#your-invitation').getByRole('link', { name: 'Let’s make a plan' }).click();
+      await page.waitForURL('**/join');
+      assert.equal(await notes() - beforePlan, 4, 'Plan link plays happy cue across navigation');
+      assert.deepEqual(errors, []);
+      await context.close();
+    }
+    const system = await browser.newContext({ colorScheme: 'dark' });
+    const page = await system.newPage();
+    await page.goto(`${base}/faq`);
+    assert.equal(await page.locator('html').getAttribute('data-appearance'), 'dark', 'Initial theme follows system preference');
+    await page.screenshot({ path: '.review-artifacts/party-dark-faq.png', fullPage: true });
+    await system.close();
+    const unsupported = await browser.newContext();
+    await unsupported.addInitScript(() => Object.defineProperty(window, 'AudioContext', { value: undefined }));
+    const quietPage = await unsupported.newPage();
+    await quietPage.goto(`${base}/faq`);
+    await quietPage.getByLabel('Sound and appearance settings').click();
+    await quietPage.getByRole('button', { name: 'Background music' }).click();
+    await quietPage.getByRole('status').waitFor();
+    assert.equal(await quietPage.getByRole('button', { name: 'Background music' }).getAttribute('aria-pressed'), 'false');
+    await unsupported.close();
+    console.log('PASS: responsive light/dark signup, persistent theme/mute, original opt-in music, working mute/stop, age gate, required questions, optional steps, agreement, mocked failure/success, celebration only after success, home-logo navigation. All submissions intercepted; no real applications created.');
+  } finally { await browser.close(); }
+})().catch(error => { console.error(error); process.exit(1); });

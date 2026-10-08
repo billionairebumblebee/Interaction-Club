@@ -1,0 +1,38 @@
+# Interaction Club
+
+> We want you at our table. Meet new people through small-group plans and personal invitations.
+
+Canonical website: https://www.interaction.club/
+
+## How it works
+
+Joining is free. Adults 18+ complete a personality quiz with availability, budget, and plan preferences, plus optional interests. An organizer reviews possible groups and sends a separate invitation when a plan fits and hosting capacity is available. Joining the matching pool does not guarantee a dinner seat. Food and activity costs are disclosed before guests accept.
+
+The initial pilot is in Berkeley. The broader idea is to make real-world connection easier through personal invitations, not an endless event feed. Matching uses practical constraints and participant preferences; it does not promise scientifically validated personality compatibility.
+
+## Product and community
+
+- [Home](https://www.interaction.club/): product overview and personal invitations.
+- [How it works](https://www.interaction.club/how-it-works): matching, invitations, attendance, and feedback.
+- [Personality quiz](https://www.interaction.club/join): join the matching pool.
+- [FAQ](https://www.interaction.club/faq): costs, referrals, matching, and common questions.
+- [About](https://www.interaction.club/about): founder Vivian and the story behind the club.
+- [Philosophy](https://www.interaction.club/philosophy): product principles.
+- [Invite a friend](https://www.interaction.club/share): create a personal invitation link.
+
+## Business
+
+- [Sponsors](https://www.interaction.club/sponsors): explore sponsoring a gathering.
+- [Investors](https://www.interaction.club/investors): founder pitch deck, thesis, and market context.
+- Business contact: vivian_yang@berkeley.edu.
+
+## Privacy and participation
+
+Interaction Club does not request a home address or continuous location tracking. Participant profiles and feedback are not public directories. Public invitation links show the display name chosen by the referrer. Dietary and accessibility needs guide venue decisions, not social exclusion; accommodations need confirmation with the venue.
+
+- [Privacy notice](https://www.interaction.club/privacy)
+- [Your data](https://www.interaction.club/data)
+- [Terms of use](https://www.interaction.club/terms)
+- [Safety guidance](https://www.interaction.club/safety)
+
+The club does not perform identity verification or background checks. Private invitation URLs, organizer tools, and attendee data are not sources for public indexing.
