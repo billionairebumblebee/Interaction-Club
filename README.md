@@ -8,7 +8,15 @@ Interaction Club helps adults meet through small-group dinners and personal invi
 
 ### Earlier work and hackathon scope
 
-Interaction Club began with earlier problem validation and an unfinished July prototype. The submitted invitation-first experience was rebuilt and expanded during October 5–11, 2026. This submission repository was created during hackathon week; the original private repository is retained separately, not rewritten or backdated.
+**The problem came before the hackathon. The rebuilt product experience came this week.**
+
+Interaction Club grew from a practical observation at Berkeley: meeting people is not the same as getting to know them. Through her own efforts to connect on campus and attending thoughtfully hosted dinners, Vivian saw how a small table, an engaged host and time for conversation could turn introductions into meaningful connections.
+
+Before hackathon week, she asked people about how they met others at Berkeley, what made connecting difficult and what they would change. These informal conversations and firsthand experiences provided early qualitative problem validation and informed the product's direction. The hackathon became the opportunity to test that direction with a working experience and real participant signups.
+
+She initially explored forming a Berkeley student club, then chose an independent format to focus on delivering the experience rather than navigating club administration. An unfinished earlier website explored the idea but did not deliver the intended experience. During hackathon week, beginning October 5, 2026, she rebuilt the invitation-first experience around personal invitations, richer intake, host-reviewed grouping and private dinner confirmations.
+
+The foundation brought into the hackathon was problem discovery, early conversations and a clear product direction—not a finished product. This week's work turned that foundation into the implementation and operating workflows described below. The public submission repository was created during hackathon week; the original private repository is retained separately, not rewritten or backdated.
 
 The framework/tooling scaffold and some basic UI, utility and planning files were retained from the earlier prototype. This is not a claim that every line was newly authored. The week-specific features and workflow changes are described below. Private outreach, negotiation materials, participant records, credentials and production event configuration are excluded.
 
@@ -17,7 +25,7 @@ The framework/tooling scaffold and some basic UI, utility and planning files wer
 - Primary: **Track 5 — Consumer & New Experiences**
 - Secondary: **Track 3 — Health & Human Performance**, focused on social connection and belonging. No clinical or health-outcome claims.
 - Deadline: **Saturday, October 10, 2026, 11:59 PM Pacific**
-- Repository publication and submission remain pending the privacy/security review and Vivian's final approval.
+- This repository is public. Final submission remains pending the compliant pitch/demo video and Vivian's approval.
 
 ## What was built, who it is for, and how it works
 
