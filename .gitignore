@@ -40,6 +40,7 @@ Thumbs.db
 
 .vercel
 .env*
+!.env.example
 
 # Private operations and local evidence never belong in the public submission.
 output/
