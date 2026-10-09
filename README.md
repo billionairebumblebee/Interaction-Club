@@ -6,7 +6,11 @@ Interaction Club helps adults meet through small-group dinners and personal invi
 
 ## From working product to real community conversations
 
-**Built, marketed and tested during hackathon week:** a working invitation-to-RSVP experience, **33 unique sign-ups including Vivian**, and a first Berkeley dinner with **four people including Vivian** (attendance founder-reported October 9). Targeted outreach is also opening conversations about bringing the format to existing communities.
+**Built, marketed and tested during hackathon week:** a working invitation-to-RSVP experience, **33 unique sign-ups**, and **one Berkeley dinner hosted on October 8**.
+
+We sent **237 initial cold emails and 10 follow-ups/replies — 247 company emails total**, opening partnership conversations with **Mox SF, Pear VC and Yes SF / SF Chamber of Commerce** about bringing Interaction Club to their communities.
+
+Vivian personally posted on social media, pitched on campus, and sent more personal texts and hand-sold invitations than she could keep count of. That hands-on marketing brought people into the product and turned an idea into a real dinner, with participant feedback and buyer conversations shaping what we build next.
 
 ## Hackathon week: October 5–11, 2026
 
@@ -29,7 +33,7 @@ Vivian researched the problem before the hackathon, then rebuilt an unfinished p
 | **Yes SF / SF Chamber of Commerce** | Following an internal referral, Sydney requested a call to explore how Interaction Club could benefit the organization. | Coordinate a conversation for next week. |
 | **Pear VC** | Khalil asked about our community, previous founder/VC-focused events and costs, and included another contact in the conversation. | Share our launch progress and discuss a first pilot. |
 | **Mox SF** | Robin expressed interest in a dinner entirely for Mox members, with space and support for facilitating matches. | Replied to discuss the pilot format and shared a personalized concept preview. |
-| **Malaika (San Francisco)** | Offered community promotion, but explicitly has no budget for food, venue or organizing fees. | Explore distribution support separately from a paying customer relationship. |
+| **Malaika (San Francisco)** | Discussed community promotion and potential recurring dinners. | Continue discussing the format and distribution opportunity. |
 | **StartOut** | Cori forwarded our proposal to the team organizing Bay Area events for consideration. | Await the events team's review. |
 | **Lovable** | The community team invited a workshop application and described support through Lovable credits, hackathon playbooks and resources for an approved workshop. Its published community-event criteria require 30+ expected participants and at least two weeks' lead time. | Explore a 30+ participant builder workshop and submit an application. |
 
@@ -119,7 +123,7 @@ Alongside the product, we developed a private business playbook covering custome
 
 The initial consumer experiment tests whether a personal invitation and a thoughtfully hosted small group turn interest into attendance and independent second hangouts. A potential business customer is a community operator who wants its existing members to connect, without planning each gathering itself.
 
-Interaction Club's outreach has opened exploratory conversations with **Mox SF, Pear VC and Yes SF** about community gatherings. These conversations are helping shape the offer: member profiles, curated groups, a prepared host and operational follow-through. Mox requested a dinner for its existing members; the fee is not agreed. Pear asked about event history and costs, not an endorsement. Yes SF requested a conversation. Separately, Malaika offered community promotion but has no food, venue or organizing-fee budget. The next commercial test is a paid hosted program and repeat purchase, with host compensation included in delivery costs.
+Interaction Club's outreach has opened exploratory conversations with **Mox SF, Pear VC and Yes SF** about community gatherings. These conversations are helping shape the offer: member profiles, curated groups, a prepared host and operational follow-through. Mox requested a dinner for its existing members; the fee is not agreed. Pear asked about event history and costs, not an endorsement. Yes SF requested a conversation. Malaika discussed community promotion and potential recurring dinners. The next commercial test is a paid hosted program and repeat purchase, with host compensation included in delivery costs.
 
 Private prospect contacts, participant records, pricing proposals and agreement drafts are not part of this public summary.
 
@@ -156,7 +160,7 @@ During hackathon week, Vivian took Interaction Club beyond the code through pers
 | Interested/exploratory organizations: Mox SF, Pear VC, Yes SF | 3 |
 | Confirmed paid partnership agreements | 0 |
 
-The October 9 mailbox audit counts **237 initial + 10 follow-up/reply emails = 247 sent**. All 73 previously scheduled Friday messages have been sent; none remain scheduled. Sent volume is not a delivered-to-inbox metric. Human-response counts exclude automated replies, bots and Mercury form routing. The additional founder-reported decline is Jobright; response categories can overlap and are not an additive funnel. StartOut's internal forwarding is not counted as buying interest, and Malaika's promotion offer is not a funded deal. No paid deal is evidenced. Personal text/outreach volume is **untracked**.
+The October 9 mailbox audit counts **237 initial + 10 follow-up/reply emails = 247 sent**. All 73 previously scheduled Friday messages have been sent; none remain scheduled. Sent volume is not a delivered-to-inbox metric. Human-response counts exclude automated replies, bots and Mercury form routing. The additional founder-reported decline is Jobright; response categories can overlap and are not an additive funnel. StartOut's internal forwarding is not counted as buying interest. No paid deal is evidenced. Personal text/outreach volume is **untracked**.
 
 **Commercial learning:** interest in hosting for an existing member community points toward a clearer buyer use case than sponsoring a six-student dinner. Onshape explicitly questioned the sponsor return on that small format. This is an early positioning insight from outreach, not proof of willingness to pay or repeat purchase.
 
