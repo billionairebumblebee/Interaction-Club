@@ -1,6 +1,14 @@
 # Dinner RSVP and reminder workflow
 
-Updated October 8, 2026. Preparation and safeguards are implemented; no email provider, cron, automatic sends, or new guest outreach is enabled.
+Updated October 9, 2026. Application preparation and safeguards are implemented. Assistant-operated scheduling is a separate route from the application mail-provider hook; neither this document nor a scheduled wakeup grants permission for unreviewed guest messages.
+
+## Assistant-operated checkpoints
+
+The assistant may use the organizer's verified Gmail and Google Sheets through the browser. A separate email API is not a prerequisite. Configure actual reminder times for each event and disclosed reply deadline. Check current RSVPs at those checkpoints only, reconcile the existing private host roster, then prepare eligible messages. Skip RSVP nudges once a guest responds; confirmed guests may still receive attendance/arrival information.
+
+During the same checkpoint, a cancellation, decline or valid seat release triggers compatibility review for one backup per open seat. Verify capacity and opt-ins, prepare their exact invitation for approval, and retain the original guest's history. If no backup fits before the cutoff, keep the open seat and request a go/no-go decision. Never force a replacement or silently cancel the dinner.
+
+Log event/member/reminder keys and verified Gmail Sent evidence. Treat uncertain delivery as requiring review, with no blind retry or DM fallback. The application's `sendingEnabled: false` remains unchanged by an assistant schedule. See [community operations](AI_COMMUNITY_OPERATIONS.md) for the two execution routes.
 
 ## Timing and status
 

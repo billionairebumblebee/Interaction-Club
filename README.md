@@ -20,12 +20,15 @@ The foundation brought into the hackathon was problem discovery, early conversat
 
 The framework/tooling scaffold and some basic UI, utility and planning files were retained from the earlier prototype. This is not a claim that every line was newly authored. The week-specific features and workflow changes are described below. Private outreach, negotiation materials, participant records, credentials and production event configuration are excluded.
 
-**Pitch/demo video: not linked yet. This is a submission blocker.** The final linked video must be 2–3 minutes; existing longer footage needs a verified compliant edit.
+**Pitch/demo video:** [Watch the full Interaction Club demo](https://drive.google.com/file/d/1_dx79GduuyG2RJd1URAOAdQR9BekCrN5/view).
+
+Submission check: the hackathon requests a **2–3 minute pitch or demo video linked in this README**. This link points to `full demo.mp4`; its duration and signed-out judge playback still need verification. If the full demo exceeds three minutes, use a compliant 2–3 minute cut here and retain the longer walkthrough as supplementary material.
 
 - Primary: **Track 5 — Consumer & New Experiences**
+- Additional: **Track 1 — AI-Native Enterprise**, for AI-assisted community operations: turning member intake into reviewed groups, personal invitations, coordinated RSVPs and a prepared host. The present pilot uses an external AI assistant; it is not an integrated autonomous enterprise agent.
 - Secondary: **Track 3 — Health & Human Performance**, focused on social connection and belonging. No clinical or health-outcome claims.
 - Deadline: **Saturday, October 10, 2026, 11:59 PM Pacific**
-- This repository is public. Final submission remains pending the compliant pitch/demo video and Vivian's approval.
+- This repository is public. The demo link is included above; final submission remains pending video-length/access verification and Vivian's approval.
 
 ## What was built, who it is for, and how it works
 
@@ -45,6 +48,28 @@ Joining the matching pool does not guarantee a dinner seat. Guest identities rem
 AI assistance currently happens **outside the website**, through the founder's assistant-assisted interpretation and curation. There is no integrated model API or autonomous AI matchmaker in this repository.
 
 The in-app suggestion engine is deterministic TypeScript: it checks availability, age band, budget, activity, intent, table opt-in, existing invitations and do-not-rematch constraints. It uses shared interests and optional discipline variety as heuristics. A score is not a validated compatibility prediction. The host reviews the proposed group and its rationale before creating invitations, and records whether AI assistance was used.
+
+## AI-assisted community operations
+
+**Consumer experience on the outside; an AI-assisted operating workflow behind it.** Community operators should not have to repeatedly interpret member profiles, assemble groups, chase replies and prepare every host from scratch. Interaction Club combines structured software with an external AI assistant to help turn member interest into a concrete, hosted gathering.
+
+During the pilot, Vivian uses the assistant for intake interpretation, group-curation support, communication drafts, operational record updates, host preparation and synthesis of event feedback. The website supplies durable records and explicit guest actions. This is a founder-operated, human-supervised workflow today, not a claim that the repository contains a model integration or that all tasks run unattended.
+
+| Stage | Available today | Remaining automation work |
+| --- | --- | --- |
+| Intake | Web profiles/preferences and queued Google Sheets delivery | Reliable event-specific roster projection on every change |
+| Curation | Deterministic constraint-based suggestions plus external AI review | Integrated model-assisted proposals; organizer approval stays explicit |
+| Invitations | Private numbered dinner pages, guest access, consent and RSVP controls; assistant-operated Gmail | Verify exact-message approval and delivery receipts; a separate email API is optional |
+| Follow-through | Durable reminder jobs, approved-message digests, live eligibility checks and cancellation safeguards | Scheduled assistant checkpoints, event registration and verified delivery |
+| Seat replacement | Compatibility review and a documented replacement workflow | Capacity-safe backfill proposals and approved replacement sends |
+| Host delivery | Private arrival dashboard, table directions and help replies; private operating playbook | Full guest-needs host view and repeatable trained-host handoff |
+| Learning | First dinner delivered; founder/assistant operational review | Tested feedback-to-next-event automation and measured coordination savings |
+
+The repeatable target is **configure an event → review a proposed group → approve invitations → scheduled follow-through → human-hosted experience → reviewed learning**. The assistant can operate the organizer's existing Gmail and Google Sheets through the computer, without requiring a separate email API. At reminder checkpoints it reads current RSVPs, updates the private host roster, suppresses unanswered-RSVP nudges for guests who already responded, and prepares compatible replacements for released seats. Confirmed guests can still receive relevant attendance/arrival reminders. If no compatible replacement is available before the cutoff, keep the smaller roster and request a go/no-go decision rather than force a match.
+
+Our scaling goal is **AI handles the coordination; a trained host delivers the experience**. The founder supplies taste, event configuration and approvals. Hosts provide presence and guest care. The pilot remains human-supervised; a scheduled assistant run is different from a fully autonomous application backend.
+
+See [the community operations workflow and automation launch checklist](docs/AI_COMMUNITY_OPERATIONS.md). No new scheduler, external send, or production policy is activated by this documentation.
 
 ## Business validation and operating design
 
@@ -110,6 +135,8 @@ The earlier October 8 Sheet audit shows **31 unique signups, including Vivian**.
 
 ### First live pilot delivered — October 8
 
+**October 9 founder update:** 33 signup responses including Vivian as host, or **32 participant responses excluding the host**, with Ayushi the latest signup according to Vivian's check. This is newer than the October 8 audit above; response count is not a verified attendance or unique-person metric.
+
 We hosted our first Berkeley dinner with three guests plus the founder-host. The pilot produced shared-interest conversation and practical lessons for improving arrivals, introductions, and inclusive facilitation. Next iteration: a brief opening round after guests order, stronger follow-up prompts, and a clear closing invitation to reconnect.
 
 Operational learning now informs the dinner-day workflow: clear RSVP deadlines, delayed-reply handling, safe cancellations, and help finding the actual table. **Implemented web workflow:** private arrival status/ETA saves, help requests and host replies, an arrival-only host dashboard with visible-page polling, and one-hour reminder preparation in the existing outbox. Self-reported arrival stays separate from organizer-verified attendance. Actual notification delivery, approved table photos and native push/Live Activities remain pending. The proposed deadline/expiry policy requires approval before activation. See [dinner-day arrival workflow](docs/DINNER_ARRIVALS.md).
@@ -155,7 +182,7 @@ Idea research and an existing website predate this hackathon. This timeline dist
 | Wed, Oct 7 | Added roster-gated dinner access, explicit participation/photo choices, clearer RSVP controls and saved-response celebrations; separated consent fields from optional answers in the response export. Community-operator outreach surfaced the member-only dinner use case. |
 | Thu, Oct 8 | Updated invitation access and aligned the first dinner's website details with its Calendar timing. Consolidated matching, hosting and business operations. The audit shows **31 unique signups including the host**, **164 initial cold emails sent**, **10 follow-up/reply emails sent**, and **73 initial emails scheduled separately for October 9**. Three founder-identified exploratory conversations: Mox SF, Malaika in San Francisco, and Pear VC. **Delivered dinner-001 with three guests plus the founder-host**, according to Vivian's report. Shared-interest conversation and hosting lessons inform the next iteration. |
 | Fri, Oct 9 | **Proposed, unconfirmed:** the second dinner. Further community-pilot qualification continues. |
-| Sat, Oct 10 | **Pending:** finalize the verified 2–3 minute pitch/demo link and submission package, complete the privacy/security review, and obtain publication approval. Submission deadline: 11:59 PM Pacific. |
+| Sat, Oct 10 | **Pending:** verify the linked demo is 2–3 minutes and accessible to judges, finalize the submission package, complete the privacy/security review, and obtain publication approval. Submission deadline: 11:59 PM Pacific. |
 | Sun, Oct 11 | **Scheduled by organizers:** Demo Day at SCET, Grimes Engineering Center, top floor, 1–4 PM; table rounds 1:30–2:30 PM. Finalists pitch for three minutes. Selection and participation outcomes are not claimed. |
 
 ## Technical implementation
