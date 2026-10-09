@@ -24,7 +24,7 @@ export async function POST(request: Request) {
       return json({ job: await approveReminder(job.id, draft.digest, application), sendingEnabled: false });
     }
     const kind = body.kind as ReminderKind;
-    if (body.action !== "queue" || !["invitation", "unanswered-48h", "confirmed-24h"].includes(kind)) return json({ error: "Unsupported reminder action." }, 400);
+    if (body.action !== "queue" || !["invitation", "unanswered-48h", "confirmed-24h", "arrival-1h", "rsvp-expiring-3h"].includes(kind)) return json({ error: "Unsupported reminder action." }, 400);
     const job = await queueReminder(table, member, kind);
     return json({ job, draft: reminderDraft(table, member, application, kind), eligibleNow: reminderEligible(table, member, kind), sendingEnabled: false });
   } catch (error) { return json({ error: error instanceof Error ? error.message : "Unable to prepare reminders." }, 400); }

@@ -1,11 +1,12 @@
 "use client";
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { DynaPuff } from "next/font/google";
-import { ATTENDANCE_POLICY, attendanceAction, attendancePriority, cancellationPolicy, cancellationConsequenceApplies, canCheckIn, declineReasons, eventEnd, isLateCancellation } from "@/lib/attendance";
+import { ATTENDANCE_POLICY, attendanceAction, attendancePriority, cancellationPolicy, cancellationConsequenceApplies, declineReasons, eventEnd, isLateCancellation } from "@/lib/attendance";
 import type { TableRecord } from "@/lib/concierge";
 import type { MemberState } from "@/lib/concierge";
 import "./attendance.css";
 import CalendarLinks from "./calendar-links";
+import ArrivalPanel from "./arrival-panel";
 import InvitationTermsChoice from "../../invitation-terms-choice";
 import { useInteractionExperience } from "../../interaction-experience";
 import PhotoPermissions from "../../join/photo-permissions";
@@ -14,7 +15,7 @@ import { PARTICIPATION_TERMS_VERSION } from "@/lib/participation-terms";
 import { acceptInvitationAgreement, invitationAgreementComplete } from "@/lib/invitation-agreement";
 const bubble = DynaPuff({ subsets: ["latin"], variable: "--attendance-bubble", weight: ["500", "600"] });
 
-export type GuestAttendance = Pick<MemberState, "rsvp" | "attendance" | "checkedInAt" | "cancellation" | "termsAcceptance" | "photoConsent" | "decline" | "policyAcceptedAt" | "seatReleasedAt">;
+export type GuestAttendance = Pick<MemberState, "rsvp" | "attendance" | "checkedInAt" | "cancellation" | "termsAcceptance" | "photoConsent" | "decline" | "policyAcceptedAt" | "seatReleasedAt" | "arrival" | "arrivalHelp">;
 type Plan = { status: string; startsAt: string; endsAt?: string; responseDeadline?: string; cost?: number; costDetails?: string; venueAddress?: string; venueName?: string; venueArea?: string; activity?: string; sponsorDisclosure?: string };
 function subscribeDemo(callback: () => void) { window.addEventListener("storage", callback); return () => window.removeEventListener("storage", callback); }
 function readDemo() { try { return localStorage.getItem("interaction.synthetic-dinner-rsvp"); } catch { return null; } }
@@ -60,7 +61,7 @@ export default function AttendancePanel({ token, endpoint = `/api/table/${token}
   }
   const actionable = table.status === "invited" && Date.parse(table.startsAt) > now && (!table.responseDeadline || Date.parse(table.responseDeadline) > now) && (table.cost !== undefined || !!table.costDetails?.trim()) && !!table.venueAddress && !!table.sponsorDisclosure;
   const late = table.status !== "cancelled" && isLateCancellation(table.startsAt, now);
-  return <section className={`attendance-panel ${bubble.variable}`} aria-label="Your RSVP and attendance">
+  return <section id="manage-rsvp" className={`attendance-panel ${bubble.variable}`} aria-label="Your RSVP and attendance">
     <h2>{member.attendance === "attended" ? "You’re checked in." : member.rsvp === "yes" && !accepted ? "Finish confirming your place." : member.rsvp === "yes" ? "Yay! We’ll see you at our table! 💝" : member.rsvp === "no" ? member.cancellation ? "Your RSVP is cancelled." : "Aw, we’ll miss you! 💌" : "Can you make it?"}</h2>
     {member.rsvp === "no" && <p role="status">Join us for dinner next time. There’ll be more invitations! 💕</p>}
     {demo && <p><b>Synthetic demo:</b> responses stay in this browser. No real guest, booking or message. <button className="exp-text-button" onClick={() => { localStorage.removeItem("interaction.synthetic-dinner-rsvp"); setMember(initialMember); }}>Reset demo</button></p>}
@@ -76,11 +77,11 @@ export default function AttendancePanel({ token, endpoint = `/api/table/${token}
     {declining && member.rsvp === "pending" && <div className="attendance-warning"><h3>Not this time? 💌</h3>{declineFields}<div className="letter-actions"><button type="button" className="invitation-choice-button" disabled={busy || !declineReady} onClick={() => update({action:"rsvp",value:"no",declineReason,declineNote})}>{busy ? "Saving…" : "Decline invitation"}</button><button type="button" className="exp-text-button" disabled={busy} onClick={() => setDeclining(false)}>Go back</button></div></div>}
     {member.rsvp === "pending" && !actionable && <p>This invitation isn’t accepting RSVPs right now.</p>}
     {member.rsvp === "yes" && member.attendance !== "attended" && <>
-      <p>Please check in here when you arrive. No location tracking.</p>
-      {canCheckIn(table, now) ? <button className="exp-button dark" disabled={busy || !accepted} onClick={() => update({ action: "check-in" })}>I’m here — check me in</button> : <p>{now > eventEnd(table) ? "Missed check-in? Ask the organizer to confirm you attended. Missing a tap is not an automatic no-show." : "Check-in opens 30 minutes before the start and stays open until the event ends."}</p>}
+      {!demo && accepted && <ArrivalPanel endpoint={endpoint} onMember={setMember}/>}
+      {demo && <p>Arrival actions use private server storage in real invitations. This synthetic preview does not send host updates.</p>}
       {now < eventEnd(table) && <p><button className="exp-text-button" disabled={busy} onClick={() => setConfirm(true)}>Need to cancel?</button></p>}
     </>}
-    {member.attendance === "attended" && <p role="status">{member.checkedInAt ? "Your arrival is recorded. Enjoy your time together." : "Your organizer recorded your attendance."}</p>}
+    {member.attendance === "attended" && <p role="status">Your organizer recorded your attendance.</p>}
     {confirm && <div className="attendance-warning"><h3>Cancel this RSVP?</h3><p>{late && cancellationConsequenceApplies(member) ? "This is less than 24 hours before the start, or the event has already started. This will count as a late cancellation unless the organizer excuses it. Two within 90 days lower your future matching priority." : late ? "We’ll record your cancellation. No new cancellation consequence is being added to this invitation." : "This won’t count as a late cancellation."}</p><p>Your cancellation is final here. Ask the organizer if you want to rejoin; a seat isn’t guaranteed.</p><p>Need to leave a plan for safety or an emergency? Cancel now; you can ask for a review afterward.</p>{declineFields}<div className="letter-actions"><button className="exp-button dark" disabled={busy || !declineReady} onClick={() => update({ action: "rsvp", value: "no", confirmLateCancellation: late, declineReason, declineNote })}>Confirm cancellation</button><button className="exp-text-button" disabled={busy} onClick={() => setConfirm(false)}>Keep my RSVP</button></div></div>}
     {priority && <p>Your unexcused late cancellations in the last 90 days: <b>{priority.lateCancellations}</b>. {priority.deprioritized ? `Your matching priority is currently lower. With no further late cancellations, it returns to normal on ${new Date(priority.priorityRestoresAt!).toLocaleDateString("en-US", { timeZone: "America/Los_Angeles" })}.` : "Your matching priority is normal."}</p>}
     {member.cancellation && <>

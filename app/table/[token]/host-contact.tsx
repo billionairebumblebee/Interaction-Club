@@ -1,13 +1,9 @@
-import { cleanHostContactEmail, hostContactHref } from "@/lib/host-contact";
-
-export default function HostContact({ email }: { email?: string }) {
-  const address = cleanHostContactEmail(email);
-  const href = hostContactHref(email);
-  if (!address || !href) return null;
+export default function HostContact(props: { email?: string }) {
+  void props;
   return <aside className="host-contact" style={{ marginTop: 32, padding: 24, border: "2px solid #8091df", borderRadius: 24 }}>
-    <h2>Questions or running late?</h2>
-    <p>Your host is a real person. Reach out about your plan.</p>
-    <a className="exp-button dark" href={href}>Contact your host ↗</a>
-    <p style={{ overflowWrap: "anywhere" }}>{address}</p>
+    <h2>Questions? Email Interaction Club.</h2>
+    <p>For dinner-day directions, use the arrival actions in your invitation. Email is not monitored live or emergency support.</p>
+    <a className="exp-button dark" href="mailto:the@interaction.club">Email us ↗</a>
+    <p style={{ overflowWrap: "anywhere" }}>the@interaction.club</p>
   </aside>;
 }

@@ -10,7 +10,8 @@ function load(file, deps = {}) {
 const photo = load('lib/photo-consent.ts');
 const terms = load('lib/participation-terms.ts');
 const agreement = load('lib/invitation-agreement.ts', { './photo-consent': photo, './participation-terms': terms });
-const attendance = load('lib/attendance.ts');
+const arrival = load('lib/dinner-arrival.ts');
+const attendance = load('lib/attendance.ts', { './dinner-arrival': arrival });
 const payload = { action: 'rsvp', value: 'yes', policyVersion: attendance.ATTENDANCE_POLICY, agreement: true, termsVersion: terms.PARTICIPATION_TERMS_VERSION, photoConsent: { version: photo.PHOTO_CONSENT_VERSION, capture: false, hackathon: false, publicPosting: false, recordedAt: 'forged-client-time' } };
 assert.equal(agreement.invitationAgreementComplete({}), false);
 assert.equal(terms.PARTICIPATION_TERMS_VERSION, '2026-10-08-v1');
@@ -27,7 +28,7 @@ assert.throws(() => agreement.acceptInvitationAgreement({ ...payload, photoConse
   let member = { applicationId: 'synthetic', token: 'private-test', rsvp: 'pending', attendance: 'unknown' };
   const table = { id: 'test-table', activity: 'Dinner', status: 'invited', startsAt: new Date(Date.now() + 86400000).toISOString(), venueAddress: 'Test only', cost: 15, sponsorDisclosure: 'No sponsor', members: [member] };
   let saves = 0, exports = [];
-  const api = load('app/api/table/[token]/route.ts', { '@/lib/invitation-agreement': agreement, '@/lib/attendance': attendance,
+  const api = load('app/api/table/[token]/route.ts', { '@/lib/invitation-agreement': agreement, '@/lib/attendance': attendance, '@/lib/dinner-arrival': arrival, '@/lib/arrival-host': { getArrivalPlan: async () => ({hostName:'Synthetic host',landmark:'Pink sign'}) },
     '@/lib/concierge': { findTableByToken: async () => ({ table, memberIndex: 0 }), listTables: async () => [table], updateMember: async (_, id, transform) => { const value = transform(table.members.find(item => item.applicationId === id), table); saves++; member = value; table.members[0] = value; return value; } },
     '@/lib/sheets': { queueSheetRecord: async value => exports.push(value) } });
   const ctx = { params: Promise.resolve({ token: 'private-test' }) };

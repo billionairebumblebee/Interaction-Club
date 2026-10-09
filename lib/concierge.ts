@@ -28,6 +28,9 @@ export type ApplicationRecord = CommunityProfile & {
 };
 
 export type MemberState = {
+  arrival?: { status: "on-my-way" | "here" | "running-late"; at: string; etaMinutes?: number };
+  arrivalHistory?: NonNullable<MemberState["arrival"]>[];
+  arrivalHelp?: { id: string; requestedAt: string; acknowledgedAt?: string; response?: string };
   cancellationHistory?: NonNullable<MemberState["cancellation"]>[];
   rsvpHistory?: { at: string; from: MemberState["rsvp"]; to: MemberState["rsvp"]; actor: "guest" | "organizer"; reason?: string }[];
   rsvpUpdatedAt?: string;
@@ -147,8 +150,8 @@ function mergeParticipation(table: TableRecord, records: ParticipationRecord[]) 
 }
 export async function saveMember(tableId: string, member: MemberState) {
   // Separate records keep one attendee from overwriting another attendee's update.
-  const { rsvp, attendance, feedback, checkedInAt, policyAcceptedAt, attendanceReviewedAt, cancellation, cancellationHistory, termsAcceptance, termsAcceptanceHistory, photoConsent, decline, rsvpHistory, rsvpUpdatedAt, seatReleasedAt, invitationSentAt } = member;
-  await writeRecord(`participation/${tableId}/${member.applicationId}.json`, { tableId, applicationId: member.applicationId, state: { rsvp, attendance, feedback, checkedInAt, policyAcceptedAt, attendanceReviewedAt, cancellation, cancellationHistory, termsAcceptance, termsAcceptanceHistory, photoConsent, decline, rsvpHistory, rsvpUpdatedAt, seatReleasedAt, invitationSentAt } } satisfies ParticipationRecord);
+  const { rsvp, attendance, feedback, checkedInAt, policyAcceptedAt, attendanceReviewedAt, cancellation, cancellationHistory, termsAcceptance, termsAcceptanceHistory, photoConsent, decline, rsvpHistory, rsvpUpdatedAt, seatReleasedAt, invitationSentAt, arrival, arrivalHistory, arrivalHelp } = member;
+  await writeRecord(`participation/${tableId}/${member.applicationId}.json`, { tableId, applicationId: member.applicationId, state: { rsvp, attendance, feedback, checkedInAt, policyAcceptedAt, attendanceReviewedAt, cancellation, cancellationHistory, termsAcceptance, termsAcceptanceHistory, photoConsent, decline, rsvpHistory, rsvpUpdatedAt, seatReleasedAt, invitationSentAt, arrival, arrivalHistory, arrivalHelp } } satisfies ParticipationRecord);
 }
 
 export async function saveTable(table: TableRecord) {

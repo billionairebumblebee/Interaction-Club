@@ -1,4 +1,5 @@
 import type { MemberState, TableRecord } from "./concierge";
+import { arrivalAction } from "./dinner-arrival";
 
 export const ATTENDANCE_POLICY = "2026-10-05-v1";
 export const LATE_CANCEL_LIMIT = 2;
@@ -26,7 +27,8 @@ export function attendanceAction(table: TableRecord, member: MemberState, body: 
     if (member.attendance === "attended") return next;
     if (member.rsvp !== "yes" || !canCheckIn(table, now)) throw new Error("Check-in opens 30 minutes before your confirmed event and closes when it ends.");
     if (member.attendanceReviewedAt) throw new Error("The organizer has already reviewed attendance. Ask them to correct it if needed.");
-    next.attendance = "attended"; next.checkedInAt = at;
+    // Guest self-report is distinct from organizer-verified attendance.
+    return arrivalAction(table, member, { value: "here" }, now);
   } else if (body.action === "review-cancellation") {
     if (!next.cancellation) throw new Error("There isn’t a cancellation to review.");
     const note = typeof body.note === "string" ? body.note.trim() : "";

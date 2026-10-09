@@ -3,9 +3,11 @@ import { attendanceAction, attendancePriority } from "@/lib/attendance";
 import { queueSheetRecord } from "@/lib/sheets";
 
 import { acceptInvitationAgreement, invitationAgreementComplete } from "@/lib/invitation-agreement";
+import { arrivalAction, arrivalEligible } from "@/lib/dinner-arrival";
+import { getArrivalPlan } from "@/lib/arrival-host";
 
 const json = (body: unknown, status = 200) => Response.json(body, { status, headers: { "Cache-Control": "private, no-store" } });
-const publicMember = (member: MemberState) => ({ rsvp: member.rsvp, attendance: member.attendance, feedback: member.feedback, checkedInAt: member.checkedInAt, cancellation: member.cancellation, termsAcceptance: member.termsAcceptance, photoConsent: member.photoConsent, decline: member.decline, policyAcceptedAt: member.policyAcceptedAt, seatReleasedAt: member.seatReleasedAt });
+const publicMember = (member: MemberState) => ({ rsvp: member.rsvp, attendance: member.attendance, feedback: member.feedback, checkedInAt: member.checkedInAt, cancellation: member.cancellation, termsAcceptance: member.termsAcceptance, photoConsent: member.photoConsent, decline: member.decline, policyAcceptedAt: member.policyAcceptedAt, seatReleasedAt: member.seatReleasedAt, arrival: member.arrival, arrivalHelp: member.arrivalHelp });
 type Context = { params: Promise<{ token: string }> };
 export async function GET(_: Request, context: Context) {
   try {
@@ -14,7 +16,8 @@ export async function GET(_: Request, context: Context) {
     if (!found) return json({ error: "This invitation is no longer available." }, 404);
     const { table, memberIndex } = found;
     const member = table.members[memberIndex];
-    return json({ table: { activity: table.activity, format: table.format, venueName: table.venueName, venueArea: table.venueArea, startsAt: table.startsAt, status: table.status, intent: table.intent, theme: table.theme, venueAddress: table.venueAddress, endsAt: table.endsAt, responseDeadline: table.responseDeadline, cost: table.cost, costDetails: table.costDetails, hosted: table.hosted, hostName: table.hostName, hostContactEmail: table.hostContactEmail, sponsorDisclosure: table.sponsorDisclosure, dressCode: table.dressCode, venueNotes: table.venueNotes, circle: table.circle }, member: publicMember(member), priority: attendancePriority(member.applicationId, await listTables()) });
+    const arrivalPlan = await getArrivalPlan(table);
+    return json({ table: { activity: table.activity, format: table.format, venueName: table.venueName, venueArea: table.venueArea, startsAt: table.startsAt, status: table.status, intent: table.intent, theme: table.theme, venueAddress: table.venueAddress, endsAt: table.endsAt, responseDeadline: table.responseDeadline, cost: table.cost, costDetails: table.costDetails, hosted: table.hosted, hostName: table.hostName, sponsorDisclosure: table.sponsorDisclosure, dressCode: table.dressCode, venueNotes: table.venueNotes, circle: table.circle }, member: publicMember(member), arrivalPlan, arrivalAvailable: arrivalEligible(table, member), priority: attendancePriority(member.applicationId, await listTables()) });
   } catch { return json({ error: "Unable to load your invitation. Please try again." }, 503); }
 }
 
@@ -45,7 +48,11 @@ export async function PATCH(request: Request, context: Context) {
         catch (error) { throw new Error(error instanceof Error ? error.message : "Please complete the agreements."); }
       }
     }
-    if (body.action === "feedback" && typeof body.meetAgain === "boolean") member = { ...member, feedback: { meetAgain: body.meetAgain, note: typeof body.note === "string" ? body.note.trim().slice(0, 500) : "", submittedAt: new Date().toISOString() } };
+    if (body.action === "arrival") {
+      if (!invitationAgreementComplete(member)) throw new Error("Accept the dinner agreements before sharing arrival updates.");
+      member = arrivalAction(liveTable, member, body);
+    }
+    else if (body.action === "feedback" && typeof body.meetAgain === "boolean") member = { ...member, feedback: { meetAgain: body.meetAgain, note: typeof body.note === "string" ? body.note.trim().slice(0, 500) : "", submittedAt: new Date().toISOString() } };
     else {
       member = attendanceAction(liveTable, member, body);
     }

@@ -9,6 +9,10 @@ Updated October 8, 2026. Preparation and safeguards are implemented; no email pr
 3. About 24 hours before, remind only confirmed guests. The **Need to cancel?** button opens their own private invitation. Canceled, declined, expired, released, or canceled-event invitations are suppressed.
 4. Re-read the guest, event, and recipient immediately before sending. Never use an old Sheet export as send authority. No extra DM/text reminder or channel fallback.
 
+October 8 web implementation: `arrival-1h` prepares a confirmed-guest reminder with a private deep link to arrival actions and RSVP management. `rsvp-expiring-3h` prepares a pending-guest reminder three hours before an explicit deadline. Both must be queued before their due time and dispatched only within a 15-minute due window, with exact-message approval, a previously sent invitation, and fresh eligibility. No retroactive catch-up sends. Stable event/member/type IDs deduplicate each kind. Reminder sending remains disabled. No 15-minute nudge has been enabled.
+
+The proposed 12-hour response window for events within 48 hours, 24 hours within seven days, and 48 hours farther ahead is a review-only helper in `lib/rsvp-deadline-proposal.ts`. It extends overnight deadlines into daytime, or returns manual review if insufficient time remains. It changes no current event or release rule. Expiry/release wording and disclosure still require approval under the policy below. Waitlist replacement remains manually reviewed against actual capacity and matching constraints, never assumed.
+
 ## Cancellation policy already in force
 
 Policy `2026-10-05-v1`: two unexcused cancellations made less than 24 hours before start, within 90 days, lower matching priority. Exactly 24 hours is timely. Declining before acceptance does not count; emergency/mistake review remains available. There is no cancellation fee or new financial consequence.

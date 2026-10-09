@@ -20,8 +20,9 @@ const blob = {
   list: async ({ prefix }) => ({ blobs: [...blobs.keys()].filter(path => path.startsWith(prefix)).map(path => ({ pathname: path })), hasMore: false }),
 };
 const store = load('lib/concierge.ts', { '@vercel/blob': blob, './dinner-invitation': {} });
-const attendance = load('lib/attendance.ts');
-const reminders = load('lib/dinner-reminders.ts', { './attendance': attendance, './concierge': store });
+const arrival = load('lib/dinner-arrival.ts');
+const attendance = load('lib/attendance.ts', { './dinner-arrival': arrival });
+const reminders = load('lib/dinner-reminders.ts', { './attendance': attendance, './concierge': store, './dinner-invitation': load('lib/dinner-invitation.ts') });
 const now = Date.now(), hour = 3600000, at = new Date(now).toISOString();
 const guest = { applicationId: 'synthetic-guest', token: 'synthetic-private', rsvp: 'yes', attendance: 'unknown', policyAcceptedAt: at };
 const table = { id: 'synthetic-table', status: 'invited', activity: 'Dinner', startsAt: new Date(now + 23 * hour).toISOString(), endsAt: new Date(now + 24 * hour).toISOString(), responseDeadline: new Date(now - hour).toISOString(), costDetails: 'Each guest pays separately', venueAddress: 'Synthetic only', sponsorDisclosure: 'None', members: [guest] };
