@@ -28,6 +28,11 @@ export type ApplicationRecord = CommunityProfile & {
 };
 
 export type MemberState = {
+  cancellationHistory?: NonNullable<MemberState["cancellation"]>[];
+  rsvpHistory?: { at: string; from: MemberState["rsvp"]; to: MemberState["rsvp"]; actor: "guest" | "organizer"; reason?: string }[];
+  rsvpUpdatedAt?: string;
+  seatReleasedAt?: string;
+  invitationSentAt?: string;
   termsAcceptanceHistory?: TermsAcceptance[];
   decline?: { reason: string; note: string; recordedAt: string };
   applicationId: string;
@@ -41,10 +46,11 @@ export type MemberState = {
   termsAcceptance?: TermsAcceptance;
   photoConsent?: PhotoConsent | null;
   attendanceReviewedAt?: string;
-  cancellation?: { at: string; startsAt: string; late: boolean; policyVersion: string; review?: { at: string; note: string }; excusedAt?: string; excuseNote?: string };
+  cancellation?: { at: string; startsAt: string; late: boolean; policyVersion: string; penaltyApplicable?: boolean; review?: { at: string; note: string }; excusedAt?: string; excuseNote?: string };
 };
 
 export type TableRecord = {
+  deadlineRelease?: { approvedAt: string; disclosedAt: string; text: string };
   photoMode?: "photography" | "photo-free";
   id: string;
   dinnerId?: string;
@@ -107,13 +113,42 @@ export async function getTable(id: string) {
 }
 
 type ParticipationRecord = { tableId: string; applicationId: string; state: Omit<MemberState, "token" | "applicationId"> };
+export function conditionalConflict(error: unknown) {
+  return error instanceof Error && (error.name === "BlobPreconditionFailedError" || /already exists|precondition/i.test(error.message));
+}
+export async function updatePrivateRecord<T>(path: string, transform: (current: T | null) => T): Promise<T> {
+  assertStore();
+  for (let attempt = 0; attempt < 5; attempt++) {
+    const result = await get(path, { access: "private", useCache: false });
+    const current = result?.stream ? await new Response(result.stream).json() as T : null;
+    const next = transform(current);
+    try {
+      await put(path, JSON.stringify(next), { access: "private", addRandomSuffix: false, contentType: "application/json", ...(result?.stream ? { ifMatch: result.blob.etag } : { allowOverwrite: false }) });
+      return next;
+    } catch (error) { if (!conditionalConflict(error)) throw error; }
+  }
+  throw new Error("Your invitation changed while saving. Refresh and try again.");
+}
+export async function updateMember(tableId: string, applicationId: string, transform: (member: MemberState, table: TableRecord) => MemberState): Promise<MemberState> {
+  const table = await readJson<TableRecord>(`tables/${tableId}.json`);
+  const base = table?.members.find(member => member.applicationId === applicationId);
+  if (!table || !base) throw new Error("Invitation no longer available.");
+  const saved = await updatePrivateRecord<ParticipationRecord>(`participation/${tableId}/${applicationId}.json`, current => {
+    const member = { ...base, ...current?.state };
+    const next = transform(member, table);
+    const { token: _token, applicationId: _id, expiresAt: _expiresAt, ...state } = next;
+    void _token; void _id; void _expiresAt;
+    return { tableId, applicationId, state };
+  });
+  return { ...base, ...saved.state };
+}
 function mergeParticipation(table: TableRecord, records: ParticipationRecord[]) {
   return { ...table, members: table.members.map(member => ({ ...member, ...records.find(record => record.tableId === table.id && record.applicationId === member.applicationId)?.state })) };
 }
 export async function saveMember(tableId: string, member: MemberState) {
   // Separate records keep one attendee from overwriting another attendee's update.
-  const { rsvp, attendance, feedback, checkedInAt, policyAcceptedAt, attendanceReviewedAt, cancellation, termsAcceptance, termsAcceptanceHistory, photoConsent, decline } = member;
-  await writeRecord(`participation/${tableId}/${member.applicationId}.json`, { tableId, applicationId: member.applicationId, state: { rsvp, attendance, feedback, checkedInAt, policyAcceptedAt, attendanceReviewedAt, cancellation, termsAcceptance, termsAcceptanceHistory, photoConsent, decline } } satisfies ParticipationRecord);
+  const { rsvp, attendance, feedback, checkedInAt, policyAcceptedAt, attendanceReviewedAt, cancellation, cancellationHistory, termsAcceptance, termsAcceptanceHistory, photoConsent, decline, rsvpHistory, rsvpUpdatedAt, seatReleasedAt, invitationSentAt } = member;
+  await writeRecord(`participation/${tableId}/${member.applicationId}.json`, { tableId, applicationId: member.applicationId, state: { rsvp, attendance, feedback, checkedInAt, policyAcceptedAt, attendanceReviewedAt, cancellation, cancellationHistory, termsAcceptance, termsAcceptanceHistory, photoConsent, decline, rsvpHistory, rsvpUpdatedAt, seatReleasedAt, invitationSentAt } } satisfies ParticipationRecord);
 }
 
 export async function saveTable(table: TableRecord) {

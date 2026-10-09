@@ -9,11 +9,12 @@ export const cancellationPolicy = "Cancel at least 24 hours before the start if 
 export function eventEnd(table: { startsAt: string; endsAt?: string }) { return Date.parse(table.endsAt || "") || Date.parse(table.startsAt) + 3 * 60 * 60 * 1000; }
 export function canCheckIn(table: { startsAt: string; endsAt?: string; status: string }, now = Date.now()) { return ["invited", "complete"].includes(table.status) && now >= Date.parse(table.startsAt) - 30 * 60 * 1000 && now <= eventEnd(table); }
 export function isLateCancellation(startsAt: string, now = Date.now()) { return Number.isFinite(Date.parse(startsAt)) && Date.parse(startsAt) - now < DAY; }
+export function cancellationConsequenceApplies(member: Pick<MemberState, "policyAcceptedAt">) { return !!member.policyAcceptedAt && Number.isFinite(Date.parse(member.policyAcceptedAt)); }
 export function attendancePriority(applicationId: string, tables: TableRecord[], now = Date.now()) {
   const dates = tables.filter(table => table.status !== "cancelled").flatMap(table => {
     const member = table.members.find(member => member.applicationId === applicationId);
     const cancellation = member?.cancellation;
-    if (!cancellation?.late || cancellation.excusedAt || member?.attendance === "attended") return [];
+    if (!cancellation?.late || cancellation.penaltyApplicable === false || cancellation.policyVersion !== ATTENDANCE_POLICY || cancellation.excusedAt || member?.attendance === "attended") return [];
     const at = Date.parse(cancellation.at);
     return at > now - CANCELLATION_DAYS * DAY && at <= now ? [at] : [];
   }).sort((a, b) => a - b);
@@ -32,8 +33,8 @@ export function attendanceAction(table: TableRecord, member: MemberState, body: 
     if (!note || note.length > 500) throw new Error("Briefly explain what needs reviewing (up to 500 characters). No sensitive details needed.");
     next.cancellation.review = { at, note };
   } else if (body.action === "rsvp" && body.value === "yes") {
+    if (member.rsvp === "no" || member.cancellation || member.attendance === "cancelled" || member.seatReleasedAt) throw new Error("Please ask the organizer before rejoining; your place may have been offered to someone else.");
     if (member.rsvp === "yes") return next;
-    if (member.rsvp === "no") throw new Error("Please ask the organizer before rejoining; your place may have been offered to someone else.");
     if (table.status !== "invited" || Date.parse(table.startsAt) <= now || (table.responseDeadline && Date.parse(table.responseDeadline) <= now) || (table.cost === undefined && !table.costDetails?.trim()) || !table.venueAddress || !table.sponsorDisclosure) throw new Error("This invitation needs updated details or a new RSVP deadline. Please contact your host.");
     if (body.policyVersion !== ATTENDANCE_POLICY) throw new Error("Please read the current attendance policy before confirming.");
     next.rsvp = "yes"; next.policyAcceptedAt = at;
@@ -47,11 +48,16 @@ export function attendanceAction(table: TableRecord, member: MemberState, body: 
     next.decline = { reason: body.declineReason as string, note: body.declineReason === "Other" ? declineNote : "", recordedAt: at };
     if (member.rsvp === "yes") {
       const late = table.status !== "cancelled" && isLateCancellation(table.startsAt, now);
-      if (late && body.confirmLateCancellation !== true) throw new Error("This is less than 24 hours before the start. Please confirm the late-cancellation notice.");
-      next.cancellation = next.cancellation || { at, startsAt: table.startsAt, late, policyVersion: ATTENDANCE_POLICY };
+      const penaltyApplicable = cancellationConsequenceApplies(member);
+      if (late && penaltyApplicable && body.confirmLateCancellation !== true) throw new Error("This is less than 24 hours before the start. Please confirm the late-cancellation notice.");
+      next.cancellation = next.cancellation || { at, startsAt: table.startsAt, late, policyVersion: ATTENDANCE_POLICY, penaltyApplicable };
       next.attendance = "cancelled";
     }
     next.rsvp = "no";
   } else throw new Error("Unsupported attendance action.");
+  if (next.rsvp !== member.rsvp) {
+    next.rsvpUpdatedAt = at;
+    next.rsvpHistory = [...(member.rsvpHistory || []), { at, from: member.rsvp, to: next.rsvp, actor: "guest", reason: next.decline?.reason }];
+  }
   return next;
 }

@@ -28,7 +28,7 @@ assert.throws(() => agreement.acceptInvitationAgreement({ ...payload, photoConse
   const table = { id: 'test-table', activity: 'Dinner', status: 'invited', startsAt: new Date(Date.now() + 86400000).toISOString(), venueAddress: 'Test only', cost: 15, sponsorDisclosure: 'No sponsor', members: [member] };
   let saves = 0, exports = [];
   const api = load('app/api/table/[token]/route.ts', { '@/lib/invitation-agreement': agreement, '@/lib/attendance': attendance,
-    '@/lib/concierge': { findTableByToken: async () => ({ table, memberIndex: 0 }), listTables: async () => [table], saveMember: async (_, value) => { saves++; member = value; table.members[0] = value; } },
+    '@/lib/concierge': { findTableByToken: async () => ({ table, memberIndex: 0 }), listTables: async () => [table], updateMember: async (_, id, transform) => { const value = transform(table.members.find(item => item.applicationId === id), table); saves++; member = value; table.members[0] = value; return value; } },
     '@/lib/sheets': { queueSheetRecord: async value => exports.push(value) } });
   const ctx = { params: Promise.resolve({ token: 'private-test' }) };
   const patch = body => api.PATCH(new Request('https://example.invalid', { method: 'PATCH', body: JSON.stringify(body) }), ctx);
@@ -51,6 +51,10 @@ assert.throws(() => agreement.acceptInvitationAgreement({ ...payload, photoConse
   assert.equal((await patch(payload)).status,200,'Explicit renewal accepts the sober-policy version');
   assert.deepEqual(member.termsAcceptanceHistory, [previousAcceptance], 'Exact old version and timestamp retained');
   assert.equal(member.termsAcceptance.version, '2026-10-08-v1');
+  assert.equal((await patch({action:'rsvp',value:'no',declineReason:'The time doesn’t work',confirmLateCancellation:true})).status,200);
+  const originalCancellation = structuredClone(member.cancellation);
+  assert.equal((await patch(payload)).status,400,'Old Yes payload cannot reclaim a canceled seat');
+  assert.deepEqual(member.cancellation,originalCancellation,'Replay preserves cancellation history');
   table.members[0] = { applicationId:'legacy',token:'private-test',rsvp:'yes',attendance:'unknown' };
   assert.equal((await patch({action:'check-in'})).status,400,'Legacy Calendar Yes does not substitute for acceptance');
   table.members[0].rsvp = 'pending';

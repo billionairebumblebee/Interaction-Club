@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { DynaPuff } from "next/font/google";
-import { ATTENDANCE_POLICY, attendanceAction, attendancePriority, cancellationPolicy, canCheckIn, declineReasons, eventEnd, isLateCancellation } from "@/lib/attendance";
+import { ATTENDANCE_POLICY, attendanceAction, attendancePriority, cancellationPolicy, cancellationConsequenceApplies, canCheckIn, declineReasons, eventEnd, isLateCancellation } from "@/lib/attendance";
 import type { TableRecord } from "@/lib/concierge";
 import type { MemberState } from "@/lib/concierge";
 import "./attendance.css";
@@ -14,7 +14,7 @@ import { PARTICIPATION_TERMS_VERSION } from "@/lib/participation-terms";
 import { acceptInvitationAgreement, invitationAgreementComplete } from "@/lib/invitation-agreement";
 const bubble = DynaPuff({ subsets: ["latin"], variable: "--attendance-bubble", weight: ["500", "600"] });
 
-export type GuestAttendance = Pick<MemberState, "rsvp" | "attendance" | "checkedInAt" | "cancellation" | "termsAcceptance" | "photoConsent" | "decline">;
+export type GuestAttendance = Pick<MemberState, "rsvp" | "attendance" | "checkedInAt" | "cancellation" | "termsAcceptance" | "photoConsent" | "decline" | "policyAcceptedAt" | "seatReleasedAt">;
 type Plan = { status: string; startsAt: string; endsAt?: string; responseDeadline?: string; cost?: number; costDetails?: string; venueAddress?: string; venueName?: string; venueArea?: string; activity?: string; sponsorDisclosure?: string };
 function subscribeDemo(callback: () => void) { window.addEventListener("storage", callback); return () => window.removeEventListener("storage", callback); }
 function readDemo() { try { return localStorage.getItem("interaction.synthetic-dinner-rsvp"); } catch { return null; } }
@@ -78,10 +78,10 @@ export default function AttendancePanel({ token, endpoint = `/api/table/${token}
     {member.rsvp === "yes" && member.attendance !== "attended" && <>
       <p>Please check in here when you arrive. No location tracking.</p>
       {canCheckIn(table, now) ? <button className="exp-button dark" disabled={busy || !accepted} onClick={() => update({ action: "check-in" })}>I’m here — check me in</button> : <p>{now > eventEnd(table) ? "Missed check-in? Ask the organizer to confirm you attended. Missing a tap is not an automatic no-show." : "Check-in opens 30 minutes before the start and stays open until the event ends."}</p>}
-      {now < eventEnd(table) && <p><button className="exp-text-button" disabled={busy} onClick={() => setConfirm(true)}>Plans changed? Cancel my RSVP</button></p>}
+      {now < eventEnd(table) && <p><button className="exp-text-button" disabled={busy} onClick={() => setConfirm(true)}>Need to cancel?</button></p>}
     </>}
     {member.attendance === "attended" && <p role="status">{member.checkedInAt ? "Your arrival is recorded. Enjoy your time together." : "Your organizer recorded your attendance."}</p>}
-    {confirm && <div className="attendance-warning"><h3>Cancel this RSVP?</h3><p>{late ? "This is less than 24 hours before the start, or the event has already started. This will count as a late cancellation unless the organizer excuses it. Two within 90 days lower your future matching priority." : "This won’t count as a late cancellation."}</p><p>Need to leave a plan for safety or an emergency? Cancel now; you can ask for a review afterward.</p>{declineFields}<div className="letter-actions"><button className="exp-button dark" disabled={busy || !declineReady} onClick={() => update({ action: "rsvp", value: "no", confirmLateCancellation: late, declineReason, declineNote })}>Confirm cancellation</button><button className="exp-text-button" disabled={busy} onClick={() => setConfirm(false)}>Keep my RSVP</button></div></div>}
+    {confirm && <div className="attendance-warning"><h3>Cancel this RSVP?</h3><p>{late && cancellationConsequenceApplies(member) ? "This is less than 24 hours before the start, or the event has already started. This will count as a late cancellation unless the organizer excuses it. Two within 90 days lower your future matching priority." : late ? "We’ll record your cancellation. No new cancellation consequence is being added to this invitation." : "This won’t count as a late cancellation."}</p><p>Your cancellation is final here. Ask the organizer if you want to rejoin; a seat isn’t guaranteed.</p><p>Need to leave a plan for safety or an emergency? Cancel now; you can ask for a review afterward.</p>{declineFields}<div className="letter-actions"><button className="exp-button dark" disabled={busy || !declineReady} onClick={() => update({ action: "rsvp", value: "no", confirmLateCancellation: late, declineReason, declineNote })}>Confirm cancellation</button><button className="exp-text-button" disabled={busy} onClick={() => setConfirm(false)}>Keep my RSVP</button></div></div>}
     {priority && <p>Your unexcused late cancellations in the last 90 days: <b>{priority.lateCancellations}</b>. {priority.deprioritized ? `Your matching priority is currently lower. With no further late cancellations, it returns to normal on ${new Date(priority.priorityRestoresAt!).toLocaleDateString("en-US", { timeZone: "America/Los_Angeles" })}.` : "Your matching priority is normal."}</p>}
     {member.cancellation && <>
       <p>{member.cancellation.excusedAt ? "Your cancellation has been excused and does not lower your priority." : member.cancellation.late ? "This cancellation was recorded as late." : "You cancelled with at least 24 hours’ notice, or the event was cancelled."}</p>
