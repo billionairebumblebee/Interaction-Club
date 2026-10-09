@@ -52,7 +52,7 @@ Alongside the product, we developed a private business playbook covering custome
 
 The initial consumer experiment tests whether a personal invitation and a thoughtfully hosted small group turn interest into attendance and independent second hangouts. A potential business customer is a community operator who wants its existing members to connect, without planning each gathering itself.
 
-Interaction Club is in talks with **Mox SF, Malaika in San Francisco, and Pear VC** about hosting curated gatherings for builder/founder communities. These three exploratory conversations are helping shape the offer: member profiles, curated groups, a prepared host and operational follow-through. Calls are being planned for next week. The next commercial test is a paid hosted program and repeat purchase, with host compensation included in delivery costs.
+Interaction Club is in talks with **Mox SF, Malaika in San Francisco, and Pear VC** about curated gatherings for builder/founder communities. These conversations are helping shape the offer: member profiles, curated groups, a prepared host and operational follow-through. Malaika's offer is community promotion, not funded event delivery. Yes SF has also requested a conversation. Calls are being planned for next week. The next commercial test is a paid hosted program and repeat purchase, with host compensation included in delivery costs.
 
 Private prospect contacts, participant records, pricing proposals and agreement drafts are not part of this public summary.
 
@@ -64,30 +64,43 @@ During hackathon week, Vivian took Interaction Club beyond the code through pers
 
 | Metric | Count |
 | --- | ---: |
-| Initial cold emails sent | 152 |
+| Initial cold emails sent | 164 |
+| Follow-up/reply emails sent | 10 |
+| **Total company emails sent** | **174** |
+| Initial emails scheduled for Friday, October 9—not sent | 73 |
+| Organizations with substantive human replies | 15 |
+| Organizations declining the current pitch, mailbox-audited | 10 |
+| Additional founder-reported decline, outside mailbox audit | 1 |
+| Follow-ups after rejection sent, included in the 10 follow-ups/replies | 6 |
 | Exploratory conversations: Mox SF, Malaika (San Francisco), Pear VC | 3 |
+| Confirmed paid partnership agreements | 0 |
 
-The **152 initial cold emails sent** figure is from the existing October 8 outreach snapshot. Next-week discovery calls are being planned to discuss community needs, scope and costs. Alongside outreach, Vivian developed private buyer-specific playbooks covering pilot qualification, delivery economics, host compensation and repeatable dinner operations.
+The October 8 mailbox audit counts **164 initial + 10 follow-up/reply emails = 174 sent**; the initial count includes one bounced attempt. The **73 scheduled emails are separate**: 50 at 8 a.m. and 23 at 10 a.m. Pacific on October 9. Human-response counts exclude automated replies and application routing. The additional founder-reported decline is Jobright; response categories can overlap and are not an additive funnel. Next-week calls are being planned, not reported as booked. No paid partnership agreement is confirmed.
 
 ### Community sign-ups and dinner invitations — October 8
 
 | Metric | Count |
 | --- | ---: |
-| Participant signups, founder-reported | 31 |
+| Unique signups in Members, including Vivian | 31 |
+| Unique invited guests, excluding Vivian as host | 9 |
+| Guest invitation instances across two dinners, excluding host | 10 |
+| Guest RSVPs accepted | 4 |
+| Guest invitations declined | 1 |
+| Guest invitations pending | 5 |
 | Dinners scheduled: October 8 and October 9 | 2 |
 
-**31 signups are interest, not attendance.** Vivian is heading to host the first dinner on October 8; it remains scheduled until she reports the delivered outcome. The second dinner is scheduled for October 9. Actual attendance, guest feedback and independent second hangouts will be recorded after the events.
+The October 8 Sheet audit shows **31 unique signups, including Vivian**. Guest RSVP counts exclude her: **4 accepted + 1 declined + 5 pending = 10 invitation instances across 9 unique guests**. Including the host, the two rosters contain 12 invitation instances across 10 unique people. Personal hand-selling/message volume is untracked. **RSVP is not attendance; attendance has not been recorded.** The October 8 and October 9 dinners remain scheduled; actual attendance, guest feedback and independent second hangouts will be recorded after the events.
 
 ## Hackathon week: October 5–11, 2026
 
-Idea research and an existing website predate this hackathon. This timeline distinguishes in-window iteration from that earlier work. Build entries are supported by repository history; signup counts are founder-reported, and future events remain planned until delivered.
+Idea research and an existing website predate this hackathon. This timeline distinguishes in-window iteration from that earlier work. Build entries are supported by repository history; the October 8 metrics above come from the mailbox and Sheet audit, and future events remain scheduled until delivered.
 
 | Day | Work and status |
 | --- | --- |
 | Mon, Oct 5 | Iterated the invitation experience, interest entry and meal-availability UI; added before/after feedback, check-in and cancellation-priority handling. |
 | Tue, Oct 6 | Improved durable Sheets delivery and retries, shortened intake, added date-specific dinner choices and optional community affinity, and refined referral and partner invitation pages. Participant outreach informed the pilot. |
 | Wed, Oct 7 | Added roster-gated dinner access, explicit participation/photo choices, clearer RSVP controls and saved-response celebrations; separated consent fields from optional answers in the response export. Community-operator outreach surfaced the member-only dinner use case. |
-| Thu, Oct 8 | Updated invitation access and aligned the first dinner's website details with its Calendar timing. Consolidated matching, hosting and business operations. Vivian reports **31 participant signups**, **152 initial cold emails sent** in the outreach snapshot, and **three exploratory conversations**: Mox SF, Malaika in San Francisco, and Pear VC. The first dinner is scheduled; delivery and attendance will be recorded after hosting. |
+| Thu, Oct 8 | Updated invitation access and aligned the first dinner's website details with its Calendar timing. Consolidated matching, hosting and business operations. The audit shows **31 unique signups including the host**, **164 initial cold emails sent**, **10 follow-up/reply emails sent**, and **73 initial emails scheduled separately for October 9**. Three founder-identified exploratory conversations: Mox SF, Malaika in San Francisco, and Pear VC. The first dinner is scheduled; delivery and attendance will be recorded after hosting. |
 | Fri, Oct 9 | **Scheduled:** the second dinner. Further community-pilot qualification continues. |
 | Sat, Oct 10 | **Pending:** finalize the verified 2–3 minute pitch/demo link and submission package, complete the privacy/security review, and obtain publication approval. Submission deadline: 11:59 PM Pacific. |
 | Sun, Oct 11 | **Scheduled by organizers:** Demo Day at SCET, Grimes Engineering Center, top floor, 1–4 PM; table rounds 1:30–2:30 PM. Finalists pitch for three minutes. Selection and participation outcomes are not claimed. |
