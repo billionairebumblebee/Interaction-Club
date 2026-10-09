@@ -39,7 +39,7 @@ The framework/tooling scaffold and some basic UI, utility and planning files wer
 
 **Pitch/demo video:** [Watch the full Interaction Club demo](https://drive.google.com/file/d/1_dx79GduuyG2RJd1URAOAdQR9BekCrN5/view).
 
-Submission check: the hackathon requests a **2–3 minute pitch or demo video linked in this README**. This link points to `full demo.mp4`; its duration and signed-out judge playback still need verification. If the full demo exceeds three minutes, use a compliant 2–3 minute cut here and retain the longer walkthrough as supplementary material.
+Submission check: the hackathon requests a **2–3 minute pitch or demo video linked in this README**. On October 9, `full demo.mp4` played and showed a duration of **1:29**; Drive reports anyone with the link can access it without signing in. Vivian is completing the remaining pitch explanation. Replace this with the final 2–3 minute cut and verify signed-out playback before submitting.
 
 - Primary: **Track 5 — Consumer & New Experiences**
 - Additional: **Track 1 — AI-Native Enterprise**, for AI-assisted community operations: turning member intake into reviewed groups, personal invitations, coordinated RSVPs and a prepared host. The present pilot uses an external AI assistant; it is not an integrated autonomous enterprise agent.
@@ -146,9 +146,9 @@ The October 8 mailbox audit counts **164 initial + 10 follow-up/reply emails = 1
 | First dinner delivered: October 8 | 1 |
 | First-dinner guests attended, founder-reported | 3 |
 | First-dinner attendees including founder-host, founder-reported | 4 |
-| Second dinner proposed: October 9, unconfirmed | 1 |
+| Second dinner proposed for October 9; subsequently postponed | 1 |
 
-The earlier October 8 Sheet audit shows **31 unique signups, including Vivian**. Guest RSVP counts exclude her: **4 accepted + 1 declined + 5 pending = 10 invitation instances across 9 unique guests**. Including the host, the two rosters contain 12 invitation instances across 10 unique people. These are the earlier invitation/RSVP snapshot, not attendance totals. Personal hand-selling/message volume is untracked. Vivian subsequently reported **three guests plus herself as founder-host attended dinner-001 on October 8**. The proposed October 9 dinner remains unconfirmed. Repeat attendance and independent second hangouts have not been established.
+The earlier October 8 Sheet audit shows **31 unique signups, including Vivian**. Guest RSVP counts exclude her: **4 accepted + 1 declined + 5 pending = 10 invitation instances across 9 unique guests**. Including the host, the two rosters contain 12 invitation instances across 10 unique people. These are the earlier invitation/RSVP snapshot, not current totals or attendance totals. Personal hand-selling/message volume is untracked. Vivian subsequently reported **three guests plus herself as founder-host attended dinner-001 on October 8**. The October 9 dinner was postponed because too few guests confirmed; it is not counted as delivered. Repeat attendance and independent second hangouts have not been established.
 
 ### First live pilot delivered — October 8
 
@@ -198,7 +198,7 @@ Idea research and an existing website predate this hackathon. This timeline dist
 | Tue, Oct 6 | Improved durable Sheets delivery and retries, shortened intake, added date-specific dinner choices and optional community affinity, and refined referral and partner invitation pages. Participant outreach informed the pilot. |
 | Wed, Oct 7 | Added roster-gated dinner access, explicit participation/photo choices, clearer RSVP controls and saved-response celebrations; separated consent fields from optional answers in the response export. Community-operator outreach surfaced the member-only dinner use case. |
 | Thu, Oct 8 | Updated invitation access and aligned the first dinner's website details with its Calendar timing. Consolidated matching, hosting and business operations. The audit shows **31 unique signups including the host**, **164 initial cold emails sent**, **10 follow-up/reply emails sent**, and **73 initial emails scheduled separately for October 9**. Three founder-identified exploratory conversations: Mox SF, Malaika in San Francisco, and Pear VC. **Delivered dinner-001 with three guests plus the founder-host**, according to Vivian's report. Shared-interest conversation and hosting lessons inform the next iteration. |
-| Fri, Oct 9 | **Proposed, unconfirmed:** the second dinner. Further community-pilot qualification continues. |
+| Fri, Oct 9 | **Second dinner postponed:** too few confirmed guests for the intended small-group experience. First-dinner learning informs RSVP deadlines, arrival help and host operations. Further community-pilot qualification continues. |
 | Sat, Oct 10 | **Pending:** verify the linked demo is 2–3 minutes and accessible to judges, finalize the submission package, complete the privacy/security review, and obtain publication approval. Submission deadline: 11:59 PM Pacific. |
 | Sun, Oct 11 | **Scheduled by organizers:** Demo Day at SCET, Grimes Engineering Center, top floor, 1–4 PM; table rounds 1:30–2:30 PM. Finalists pitch for three minutes. Selection and participation outcomes are not claimed. |
 
@@ -246,6 +246,8 @@ npm start
 ```
 
 ## Focused verification
+
+October 9 submission-readiness check: the GitHub repository is public; the homepage, signup, synthetic dinner preview, organizer preview and sitemap respond successfully. Unauthenticated organizer and dinner-session requests reject access. The publication scan of this submission checkout and its local Git history found only the documented `synthetic-test-only` fixtures, not live credentials. Name-access, arrival and matching tests passed. Two older test harnesses currently fail on missing dependency mocks; they are not counted as passes. See [submission readiness and prepared thesis](docs/SUBMISSION_READINESS.md) for remaining checks. This bounded review is not a comprehensive security certification.
 
 ```bash
 node scripts/dinner-invitation-test.cjs
