@@ -4,6 +4,23 @@
 
 Interaction Club helps adults meet through small-group dinners and personal invitations. It starts with founder-led curation and hosting, using real availability, spending limits, interests and conversational vibe to make a plan people can attend.
 
+## From working product to real community conversations
+
+**Built, marketed and tested during hackathon week:** a working invitation-to-RSVP experience, 33 signup responses reported by the founder on October 9, and our first Berkeley dinner delivered on October 8. Targeted outreach is also opening conversations about bringing the format to existing communities.
+
+### Partner outreach prospects — October 9
+
+| Organization | Response and opportunity | Next step |
+| --- | --- | --- |
+| **Yes SF / SF Chamber of Commerce** | Following an internal referral, Sydney requested a call to explore how Interaction Club could benefit the organization. | Coordinate a conversation for next week. |
+| **Pear VC** | Khalil asked about our community, previous founder/VC-focused events and costs, and included another contact in the conversation. | Share our launch progress and discuss a first pilot. |
+| **Mox SF** | Robin expressed interest in a dinner entirely for Mox members, with space and support for facilitating matches. | Replied to discuss the pilot format and shared a personalized concept preview. |
+| **Malaika (San Francisco)** | Proposed a specific community-distribution partnership for founder dinners, with potential for a recurring format. | Explore the proposed partnership format. |
+| **StartOut** | Cori forwarded our proposal to the team organizing Bay Area events for consideration. | Await the events team's review. |
+| **Lovable** | The community team invited a workshop application and described support through Lovable credits, hackathon playbooks and resources for an approved workshop. Its published community-event criteria require 30+ expected participants and at least two weeks' lead time. | Explore a 30+ participant builder workshop and submit an application. |
+
+These are exploratory prospects and program-support discussions, not announced partnerships or endorsements. Lovable's described support is in-kind workshop resources, not cash sponsorship; see its [published community-event criteria](https://lovable.dev/community-events). Detailed outreach metrics and first-dinner lessons appear below; private correspondence and contact information remain outside this repository.
+
 ## Hackathon submission
 
 ### Earlier work and hackathon scope
@@ -77,7 +94,7 @@ Alongside the product, we developed a private business playbook covering custome
 
 The initial consumer experiment tests whether a personal invitation and a thoughtfully hosted small group turn interest into attendance and independent second hangouts. A potential business customer is a community operator who wants its existing members to connect, without planning each gathering itself.
 
-Interaction Club is in talks with **Mox SF, Malaika in San Francisco, and Pear VC** about curated gatherings for builder/founder communities. These conversations are helping shape the offer: member profiles, curated groups, a prepared host and operational follow-through. Malaika's offer is community promotion, not funded event delivery. Yes SF has also requested a conversation. Calls are being planned for next week. The next commercial test is a paid hosted program and repeat purchase, with host compensation included in delivery costs.
+Interaction Club's outreach has opened conversations with **Mox SF, Malaika in San Francisco, Pear VC and Yes SF** about community gatherings. These conversations are helping shape the offer: member profiles, curated groups, a prepared host and operational follow-through. Malaika proposed a community-distribution partnership with potential for recurring dinners; Yes SF requested a conversation. Calls are being planned for next week. The next commercial test is a paid hosted program and repeat purchase, with host compensation included in delivery costs.
 
 Private prospect contacts, participant records, pricing proposals and agreement drafts are not part of this public summary.
 
