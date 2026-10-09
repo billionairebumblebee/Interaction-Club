@@ -6,7 +6,21 @@ Interaction Club helps adults meet through small-group dinners and personal invi
 
 ## From working product to real community conversations
 
-**Built, marketed and tested during hackathon week:** a working invitation-to-RSVP experience, 33 signup responses reported by the founder on October 9, and our first Berkeley dinner delivered on October 8. Targeted outreach is also opening conversations about bringing the format to existing communities.
+**Built, marketed and tested during hackathon week:** a working invitation-to-RSVP experience, **33 unique sign-ups including Vivian**, and a first Berkeley dinner with **four people including Vivian** (attendance founder-reported October 9). Targeted outreach is also opening conversations about bringing the format to existing communities.
+
+## Hackathon week: October 5–11, 2026
+
+Vivian researched the problem before the hackathon, then rebuilt an unfinished prototype into a working invitation and hosting experience during the week. Implementation details follow below. Outreach and dinner observations combine dated operational audits with Vivian's reports; Saturday and Sunday activities remain planned.
+
+| Day | Work and status |
+| --- | --- |
+| Mon, Oct 5 | Rebuilt the invitation experience, interest entry and meal-availability UI; added before/after feedback, check-in and cancellation-priority handling. |
+| Tue, Oct 6 | Improved durable Sheets delivery and retries, shortened intake, added date-specific dinner choices and optional community affinity, and refined referral and partner invitation pages. **Vivian pitched to a consulting club Tuesday night to practice and recruit customers.** According to Vivian, members challenged the pitch, liked the idea and signed up. |
+| Wed, Oct 7 | Added roster-gated dinner access, explicit participation/photo choices, clearer RSVP controls and saved-response celebrations; separated consent fields from optional answers in the response export. Community-operator outreach surfaced the member-only dinner use case. |
+| Thu, Oct 8 | Aligned invitation details with Calendar timing and consolidated matching, hosting and business operations. **Delivered Dinner 001 with four people including Vivian**, founder-reported. Shared-interest conversation and hosting lessons informed the next iteration. |
+| Fri, Oct 9 | **Vivian worked on the presentation and pitch after cancellations left the second dinner without enough confirmed guests.** People expressed interest in future dinners but reported midterm-related scheduling constraints. The second dinner was postponed. Updated audit: **33 unique sign-ups including Vivian, 247 company emails sent, and 20 substantive human replies across 18 organizations**. |
+| Sat, Oct 10 | **Planned:** practice another pitch and attend an SF Tech Week event. Finish the pitch/demo and submission preparation. |
+| Sun, Oct 11 | **Scheduled by organizers:** Demo Day at SCET, Grimes Engineering Center, top floor, 1–4 PM; table rounds 1:30–2:30 PM. Finalists pitch for three minutes. |
 
 ### Partner outreach prospects — October 9
 
@@ -15,7 +29,7 @@ Interaction Club helps adults meet through small-group dinners and personal invi
 | **Yes SF / SF Chamber of Commerce** | Following an internal referral, Sydney requested a call to explore how Interaction Club could benefit the organization. | Coordinate a conversation for next week. |
 | **Pear VC** | Khalil asked about our community, previous founder/VC-focused events and costs, and included another contact in the conversation. | Share our launch progress and discuss a first pilot. |
 | **Mox SF** | Robin expressed interest in a dinner entirely for Mox members, with space and support for facilitating matches. | Replied to discuss the pilot format and shared a personalized concept preview. |
-| **Malaika (San Francisco)** | Proposed a specific community-distribution partnership for founder dinners, with potential for a recurring format. | Explore the proposed partnership format. |
+| **Malaika (San Francisco)** | Offered community promotion, but explicitly has no budget for food, venue or organizing fees. | Explore distribution support separately from a paying customer relationship. |
 | **StartOut** | Cori forwarded our proposal to the team organizing Bay Area events for consideration. | Await the events team's review. |
 | **Lovable** | The community team invited a workshop application and described support through Lovable credits, hackathon playbooks and resources for an approved workshop. Its published community-event criteria require 30+ expected participants and at least two weeks' lead time. | Explore a 30+ participant builder workshop and submit an application. |
 
@@ -29,9 +43,9 @@ These are exploratory prospects and program-support discussions, not announced p
 
 Interaction Club grew from a practical observation at Berkeley: meeting people is not the same as getting to know them. Through her own efforts to connect on campus and attending thoughtfully hosted dinners, Vivian saw how a small table, an engaged host and time for conversation could turn introductions into meaningful connections.
 
-Before hackathon week, she asked people about how they met others at Berkeley, what made connecting difficult and what they would change. These informal conversations and firsthand experiences provided early qualitative problem validation and informed the product's direction. The hackathon became the opportunity to test that direction with a working experience and real participant signups.
+Before hackathon week, Vivian asked people about how they met others at Berkeley, what made connecting difficult and what they would change. These informal conversations and firsthand experiences provided early qualitative problem validation and informed the product's direction. The hackathon became the opportunity to test that direction with a working experience and real participant signups.
 
-She initially explored forming a Berkeley student club, then chose an independent format to focus on delivering the experience rather than navigating club administration. An unfinished earlier website explored the idea but did not deliver the intended experience. During hackathon week, beginning October 5, 2026, she rebuilt the invitation-first experience around personal invitations, richer intake, host-reviewed grouping and private dinner confirmations.
+Vivian initially explored forming a Berkeley student club, then chose an independent format to focus on delivering the experience rather than navigating club administration. An unfinished earlier website explored the idea but did not deliver the intended experience. During hackathon week, beginning October 5, 2026, Vivian rebuilt the invitation-first experience around personal invitations, richer intake, host-reviewed grouping and private dinner confirmations.
 
 The foundation brought into the hackathon was problem discovery, early conversations and a clear product direction—not a finished product. This week's work turned that foundation into the implementation and operating workflows described below. The public submission repository was created during hackathon week; the original private repository is retained separately, not rewritten or backdated.
 
@@ -39,13 +53,11 @@ The framework/tooling scaffold and some basic UI, utility and planning files wer
 
 **Pitch/demo video:** [Watch the full Interaction Club demo](https://drive.google.com/file/d/1_dx79GduuyG2RJd1URAOAdQR9BekCrN5/view).
 
-Submission check: the hackathon requests a **2–3 minute pitch or demo video linked in this README**. On October 9, `full demo.mp4` played and showed a duration of **1:29**; Drive reports anyone with the link can access it without signing in. Vivian is completing the remaining pitch explanation. Replace this with the final 2–3 minute cut and verify signed-out playback before submitting.
+The hackathon requests a **2–3 minute pitch or demo video**. The linked `full demo.mp4` is **1:29**, as checked October 9.
 
 - Primary: **Track 5 — Consumer & New Experiences**
-- Additional: **Track 1 — AI-Native Enterprise**, for AI-assisted community operations: turning member intake into reviewed groups, personal invitations, coordinated RSVPs and a prepared host. The present pilot uses an external AI assistant; it is not an integrated autonomous enterprise agent.
 - Secondary: **Track 3 — Health & Human Performance**, focused on social connection and belonging. No clinical or health-outcome claims.
-- Deadline: **Saturday, October 10, 2026, 11:59 PM Pacific**
-- This repository is public. The demo link is included above; final submission remains pending video-length/access verification and Vivian's approval.
+- Additional: **Track 1 — AI-Native Enterprise**, for AI-assisted community operations: turning member intake into reviewed groups, personal invitations, coordinated RSVPs and a prepared host. The present pilot uses an external AI assistant; it is not an integrated autonomous enterprise agent.
 
 ## What was built, who it is for, and how it works
 
@@ -60,13 +72,26 @@ For adults who want a manageable way to meet people offline, rather than browse 
 
 Joining the matching pool does not guarantee a dinner seat. Guest identities remain a surprise; invitations and calendar files contain no shared attendee list.
 
-## AI-assisted, host-reviewed matching
+## Technical implementation
+
+### Application architecture
+
+- Next.js App Router, React and TypeScript.
+- Private Vercel Blob storage holds intake, dinner records and separate per-guest participation records.
+- Secret-authenticated Google Sheets delivery mirrors records for organizer operations; queued delivery can be retried.
+- Organizer endpoints require a server-only organizer key.
+- New dinner links use stable numbered IDs, such as `/invitation/dinner-01?token=...`. Private create-only reservations prevent competing requests from allocating the same ID. Numbers are not authorization: each recipient needs an unguessable token.
+- Existing `/table/[token]` links remain supported. New invitations expire 30 days after the scheduled end.
+- Calendar generation uses explicit UTC times and the America/Los_Angeles timezone. The guest chooses whether to add an event; the app does not create Google events or send calendar emails.
+- The host must confirm the venue and full cost before generating a real invitation. No venue bookings, email sending, payment collection or native app are implemented by this workflow.
+
+### AI-assisted, host-reviewed matching
 
 AI assistance currently happens **outside the website**, through the founder's assistant-assisted interpretation and curation. There is no integrated model API or autonomous AI matchmaker in this repository.
 
 The in-app suggestion engine is deterministic TypeScript: it checks availability, age band, budget, activity, intent, table opt-in, existing invitations and do-not-rematch constraints. It uses shared interests and optional discipline variety as heuristics. A score is not a validated compatibility prediction. The host reviews the proposed group and its rationale before creating invitations, and records whether AI assistance was used.
 
-## AI-assisted community operations
+### AI-assisted community operations
 
 **Consumer experience on the outside; an AI-assisted operating workflow behind it.** Community operators should not have to repeatedly interpret member profiles, assemble groups, chase replies and prepare every host from scratch. Interaction Club combines structured software with an external AI assistant to help turn member interest into a concrete, hosted gathering.
 
@@ -94,7 +119,7 @@ Alongside the product, we developed a private business playbook covering custome
 
 The initial consumer experiment tests whether a personal invitation and a thoughtfully hosted small group turn interest into attendance and independent second hangouts. A potential business customer is a community operator who wants its existing members to connect, without planning each gathering itself.
 
-Interaction Club's outreach has opened conversations with **Mox SF, Malaika in San Francisco, Pear VC and Yes SF** about community gatherings. These conversations are helping shape the offer: member profiles, curated groups, a prepared host and operational follow-through. Malaika proposed a community-distribution partnership with potential for recurring dinners; Yes SF requested a conversation. Calls are being planned for next week. The next commercial test is a paid hosted program and repeat purchase, with host compensation included in delivery costs.
+Interaction Club's outreach has opened exploratory conversations with **Mox SF, Pear VC and Yes SF** about community gatherings. These conversations are helping shape the offer: member profiles, curated groups, a prepared host and operational follow-through. Mox requested a dinner for its existing members; the fee is not agreed. Pear asked about event history and costs, not an endorsement. Yes SF requested a conversation. Separately, Malaika offered community promotion but has no food, venue or organizing-fee budget. The next commercial test is a paid hosted program and repeat purchase, with host compensation included in delivery costs.
 
 Private prospect contacts, participant records, pricing proposals and agreement drafts are not part of this public summary.
 
@@ -116,45 +141,50 @@ The consolidated business plan remains private in the original project workspace
 
 During hackathon week, Vivian took Interaction Club beyond the code through personal invitations, campus-club pitches, social posts and targeted partner outreach. Conversations informed the intake, invitation wording, scheduling and group-compatibility requirements. The goal is to turn interest into real plans people attend, not simply collect a waitlist.
 
-### Partner outreach — October 8 snapshot
+### Partner outreach — audited October 9, 2:30 p.m. Pacific
 
 | Metric | Count |
 | --- | ---: |
-| Initial cold emails sent | 164 |
+| Initial cold emails sent | 237 |
 | Follow-up/reply emails sent | 10 |
-| **Total company emails sent** | **174** |
-| Initial emails scheduled for Friday, October 9—not sent | 73 |
-| Organizations with substantive human replies | 15 |
-| Organizations declining the current pitch, mailbox-audited | 10 |
+| **Total company emails sent** | **247** |
+| Scheduled messages remaining | 0 |
+| Substantive human reply messages | 20 |
+| Organizations with substantive human replies | 18 |
+| Organizations declining the current pitch, mailbox-audited | 12 |
 | Additional founder-reported decline, outside mailbox audit | 1 |
-| Follow-ups after rejection sent, included in the 10 follow-ups/replies | 6 |
-| Exploratory conversations: Mox SF, Malaika (San Francisco), Pear VC | 3 |
+| Interested/exploratory organizations: Mox SF, Pear VC, Yes SF | 3 |
 | Confirmed paid partnership agreements | 0 |
 
-The October 8 mailbox audit counts **164 initial + 10 follow-up/reply emails = 174 sent**; the initial count includes one bounced attempt. The **73 scheduled emails are separate**: 50 at 8 a.m. and 23 at 10 a.m. Pacific on October 9. Human-response counts exclude automated replies and application routing. The additional founder-reported decline is Jobright; response categories can overlap and are not an additive funnel. Next-week calls are being planned, not reported as booked. No paid partnership agreement is confirmed.
+The October 9 mailbox audit counts **237 initial + 10 follow-up/reply emails = 247 sent**. All 73 previously scheduled Friday messages have been sent; none remain scheduled. Sent volume is not a delivered-to-inbox metric. Human-response counts exclude automated replies, bots and Mercury form routing. The additional founder-reported decline is Jobright; response categories can overlap and are not an additive funnel. StartOut's internal forwarding is not counted as buying interest, and Malaika's promotion offer is not a funded deal. No paid deal is evidenced. Personal text/outreach volume is **untracked**.
 
-### Community sign-ups and dinner invitations — October 8
+**Commercial learning:** interest in hosting for an existing member community points toward a clearer buyer use case than sponsoring a six-student dinner. Onshape explicitly questioned the sponsor return on that small format. This is an early positioning insight from outreach, not proof of willingness to pay or repeat purchase.
+
+### Community sign-ups and dinner invitations — October 9 update
 
 | Metric | Count |
 | --- | ---: |
-| Unique signups in Members, including Vivian | 31 |
-| Unique invited guests, excluding Vivian as host | 9 |
-| Guest invitation instances across two dinners, excluding host | 10 |
+| **Unique sign-ups in Members, including Vivian** | **33** |
+| **Unique people on dinner invitation rosters, including Vivian** | **10** |
+| Invitation instances across two dinner rosters, including Vivian | 12 |
+| Guest-only unique invitees | 9 |
+| Guest-only invitation instances | 10 |
 | Guest RSVPs accepted | 4 |
-| Guest invitations declined | 1 |
-| Guest invitations pending | 5 |
+| Guest-submitted declines | 1 |
 | First dinner delivered: October 8 | 1 |
 | First-dinner guests attended, founder-reported | 3 |
 | First-dinner attendees including founder-host, founder-reported | 4 |
 | Second dinner proposed for October 9; subsequently postponed | 1 |
 
-The earlier October 8 Sheet audit shows **31 unique signups, including Vivian**. Guest RSVP counts exclude her: **4 accepted + 1 declined + 5 pending = 10 invitation instances across 9 unique guests**. Including the host, the two rosters contain 12 invitation instances across 10 unique people. These are the earlier invitation/RSVP snapshot, not current totals or attendance totals. Personal hand-selling/message volume is untracked. Vivian subsequently reported **three guests plus herself as founder-host attended dinner-001 on October 8**. The October 9 dinner was postponed because too few guests confirmed; it is not counted as delivered. Repeat attendance and independent second hangouts have not been established.
+The October 9 Members audit confirms **33 unique sign-ups including Vivian**. Invitation instances count a person again when they appear on a second dinner roster; they are not unique people or attendance. Guest RSVP totals are separate from the host's participation. Invitations closed by the organizer after Dinner 002 was postponed are **not guest-submitted declines, late cancellations or no-shows**. Vivian reported on October 9 that **three guests plus herself attended Dinner 001 on October 8: four people total**. The October 9 dinner was postponed because too few guests confirmed; it is not counted as delivered. Repeat attendance and independent second hangouts have not been established.
 
 ### First live pilot delivered — October 8
 
-**October 9 founder update:** 33 signup responses including Vivian as host, or **32 participant responses excluding the host**, with Ayushi the latest signup according to Vivian's check. This is newer than the October 8 audit above; response count is not a verified attendance or unique-person metric.
+**Attendance evidence:** four people including Vivian, founder-reported October 9; this is not inferred from accepted RSVPs or presented as independently verified check-in data.
 
 We hosted our first Berkeley dinner with three guests plus the founder-host. The pilot produced shared-interest conversation and practical lessons for improving arrivals, introductions, and inclusive facilitation. Next iteration: a brief opening round after guests order, stronger follow-up prompts, and a clear closing invitation to reconnect.
+
+**Midterms constrained this week's availability.** Vivian reports that people expressed interest in future dinners but could not attend this week because of midterms. The Friday dinner was postponed when too few guests confirmed. This feedback informs future scheduling; interest in a later dinner is not yet a confirmed RSVP or repeat attendance.
 
 Operational learning now informs the dinner-day workflow: clear RSVP deadlines, delayed-reply handling, safe cancellations, and help finding the actual table. **Implemented web workflow:** private arrival status/ETA saves, help requests and host replies, an arrival-only host dashboard with visible-page polling, and one-hour reminder preparation in the existing outbox. Self-reported arrival stays separate from organizer-verified attendance. Actual notification delivery, approved table photos and native push/Live Activities remain pending. The proposed deadline/expiry policy requires approval before activation. See [dinner-day arrival workflow](docs/DINNER_ARRIVALS.md).
 
@@ -165,6 +195,7 @@ The first delivered dinner tested the experience beyond the signup form. It was 
 - **Interest is not a confirmed seat.** Scheduling, unanswered invitations and cancellations create real coordination work. The next workflow should show explicit RSVP deadlines, send one timely reminder, expire unanswered invitations and offer released seats to compatible waitlisted guests—without relying on the founder chasing people through personal DMs.
 - **An address is not an arrival experience.** Guests need to identify the host and find the actual table. Our small pink table sign helps, but the invitation also needs a table landmark and an easy way to request help or report an ETA.
 - **Introductions need more than handshakes.** A brief opening round can give everyone an entry point. Shared interests led to conversation at the pilot; follow-up questions and room for quieter guests can help a table build on those connections without requiring everyone to perform.
+- **Hosts need a private preparation sheet.** Before each dinner, the assigned host should have the guests' reported allergies, photo permissions and short blurbs, plus shared interests that suggest points of connection. This supports thoughtful follow-up questions and deeper conversation without making guests repeat their profiles. Restrict the sheet to the assigned host and necessary organizers; do not expose it to the table or sponsors. This fuller host view is a next iteration, not a completed feature.
 - **Ordering affects the flow.** At a counter-order restaurant, separate ordering interrupts the opening conversation. Let guests order and settle in before starting the round; choose future venues with ordering flow, affordability and conversation in mind.
 - **Guests can help shape the venue shortlist.** Restaurant recommendations could make future planning more informed, particularly for vegetarian, vegan and allergy-related needs. Recommendations are leads for host/restaurant checks, not guarantees of safe accommodation.
 
@@ -174,11 +205,19 @@ These are directions identified after the first dinner, not claims of shipped ap
 
 ### A member app built around real plans
 
+**Priority: the invitation should carry people all the way to the table.** Arrival actions are a core future app experience, not an afterthought. A guest should be able to open the dinner, find the host and send a useful update in a tap. The host should see who is on the way, running late or needs help, and respond privately.
+
 - **Manage your profile:** update interests, conversational preferences, availability, travel areas, budget, dietary/accessibility needs and photo permissions without submitting everything again.
 - **Your invitations and upcoming dinners:** view private invitations, exact RSVP deadlines, event details, expected costs and arrival instructions; accept or decline, manage an accepted RSVP, and request cancellation through clear rules.
 - **Calendar and reminder preferences:** add confirmed plans to Google Calendar, manage notification choices and receive useful reminders rather than repeated manual follow-ups. Calendar export exists on the web today; a native app experience is planned.
 - **Dinner-day arrival actions:** a one-hour reminder opens the invitation with “I'm on my way,” “I'm here,” “I'm running late” with an optional ETA, “Can't find the table,” and “Manage my RSVP.” The assigned host needs an operational view of these updates and a way to acknowledge help requests; self-reported arrival is distinct from verified attendance.
 - **Native notifications and Live Activities:** explore an opt-in live event status surface showing the next dinner, time and arrival actions, where the platform supports it. This needs native implementation, permission handling and delivery testing; it is not currently provided by the website.
+
+### Personal invitations through native messaging
+
+The future experience should also work through **opt-in text messaging**, rather than rely on email or require an app download. A warm, brief dinner text can open a personalized, high-effort invitation: a cute envelope animation, clear typography, the guest's name, and one obvious RSVP action. Rich layout and animation would live in the linked invitation or native app, not be promised inside a plain SMS. Email remains a fallback.
+
+Messaging should connect directly to dinner-day actions and private help, with clear sender identity and notification preferences. Native messaging integration, delivery receipts and reliable notification sending remain future implementation work. The aim is the convenience of a personal text with the care of a designed invitation.
 
 ### Make the next experience better—and more fun
 
@@ -187,31 +226,6 @@ These are directions identified after the first dinner, not claims of shipped ap
 - **Repeatable host operations:** clear arrival instructions, a lightweight welcome/conversation script, consent-aware photos, bill-settlement guidance and reliable staff escalation. Support trained hosts without requiring the founder to personally manage every guest conversation.
 
 The immediate test is whether these changes improve timely responses, attendance, arrival confidence and the experience at the table. A native app should make a proven workflow easier—not substitute for delivering good dinners.
-
-## Hackathon week: October 5–11, 2026
-
-Idea research and an existing website predate this hackathon. This timeline distinguishes in-window iteration from that earlier work. Build entries are supported by repository history; the October 8 metrics above come from the mailbox and Sheet audit, and future events remain scheduled until delivered.
-
-| Day | Work and status |
-| --- | --- |
-| Mon, Oct 5 | Iterated the invitation experience, interest entry and meal-availability UI; added before/after feedback, check-in and cancellation-priority handling. |
-| Tue, Oct 6 | Improved durable Sheets delivery and retries, shortened intake, added date-specific dinner choices and optional community affinity, and refined referral and partner invitation pages. Participant outreach informed the pilot. |
-| Wed, Oct 7 | Added roster-gated dinner access, explicit participation/photo choices, clearer RSVP controls and saved-response celebrations; separated consent fields from optional answers in the response export. Community-operator outreach surfaced the member-only dinner use case. |
-| Thu, Oct 8 | Updated invitation access and aligned the first dinner's website details with its Calendar timing. Consolidated matching, hosting and business operations. The audit shows **31 unique signups including the host**, **164 initial cold emails sent**, **10 follow-up/reply emails sent**, and **73 initial emails scheduled separately for October 9**. Three founder-identified exploratory conversations: Mox SF, Malaika in San Francisco, and Pear VC. **Delivered dinner-001 with three guests plus the founder-host**, according to Vivian's report. Shared-interest conversation and hosting lessons inform the next iteration. |
-| Fri, Oct 9 | **Second dinner postponed:** too few confirmed guests for the intended small-group experience. First-dinner learning informs RSVP deadlines, arrival help and host operations. Further community-pilot qualification continues. |
-| Sat, Oct 10 | **Pending:** verify the linked demo is 2–3 minutes and accessible to judges, finalize the submission package, complete the privacy/security review, and obtain publication approval. Submission deadline: 11:59 PM Pacific. |
-| Sun, Oct 11 | **Scheduled by organizers:** Demo Day at SCET, Grimes Engineering Center, top floor, 1–4 PM; table rounds 1:30–2:30 PM. Finalists pitch for three minutes. Selection and participation outcomes are not claimed. |
-
-## Technical implementation
-
-- Next.js App Router, React and TypeScript.
-- Private Vercel Blob storage holds intake, dinner records and separate per-guest participation records.
-- Secret-authenticated Google Sheets delivery mirrors records for organizer operations; queued delivery can be retried.
-- Organizer endpoints require a server-only organizer key.
-- New dinner links use stable numbered IDs, such as `/invitation/dinner-01?token=...`. Private create-only reservations prevent competing requests from allocating the same ID. Numbers are not authorization: each recipient needs an unguessable token.
-- Existing `/table/[token]` links remain supported. New invitations expire 30 days after the scheduled end.
-- Calendar generation uses explicit UTC times and the America/Los_Angeles timezone. The guest chooses whether to add an event; the app does not create Google events or send calendar emails.
-- The host must confirm the venue and full cost before generating a real invitation. No venue bookings, email sending, payment collection or native app are implemented by this workflow.
 
 ## Synthetic demo
 
