@@ -6,25 +6,25 @@ Interaction Club helps adults meet through small-group dinners and personal invi
 
 ## From working product to real community conversations
 
-**Built, marketed and tested during hackathon week:** a working invitation-to-RSVP experience, **33 unique sign-ups**, and **one Berkeley dinner hosted on October 8**.
+**Built, marketed and tested during hackathon week:** a working invitation-to-RSVP experience, **33 unique sign-ups**, and **one Berkeley dinner already hosted on October 8**.
 
 We sent **237 initial cold emails and 10 follow-ups/replies — 247 company emails total**, opening partnership conversations with **Mox SF, Pear VC and Yes SF / SF Chamber of Commerce** about bringing Interaction Club to their communities.
 
-Vivian personally posted on social media, pitched on campus, and sent more personal texts and hand-sold invitations than she could keep count of. That hands-on marketing brought people into the product and turned an idea into a real dinner, with participant feedback and buyer conversations shaping what we build next.
+Vivian personally published **six social posts through Friday**, recorded product demos, pitched on campus, and sent more personal texts and hand-sold invitations than she could keep count of. That hands-on marketing brought people into the product and turned an idea into a real dinner, with participant feedback and buyer conversations shaping what we build next.
 
 ## Hackathon week: October 5–11, 2026
 
-Vivian researched the problem before the hackathon, then rebuilt an unfinished prototype into a working invitation and hosting experience during the week. Implementation details follow below. Outreach and dinner observations combine dated operational audits with Vivian's reports; Saturday and Sunday activities remain planned.
+Vivian researched the problem before the hackathon, then rebuilt an unfinished prototype into a working invitation and hosting experience during the week. Building, recruiting, outreach and real-world delivery ran together. Saturday and Sunday activities remain planned. Daily email counts below cover **237 initial cold emails**; **10 follow-ups/replies** bring the company-email total to **247**.
 
-| Day | Work and status |
-| --- | --- |
-| Mon, Oct 5 | Rebuilt the invitation experience, interest entry and meal-availability UI; added before/after feedback, check-in and cancellation-priority handling. |
-| Tue, Oct 6 | Improved durable Sheets delivery and retries, shortened intake, added date-specific dinner choices and optional community affinity, and refined referral and partner invitation pages. **Vivian pitched to a consulting club Tuesday night to practice and recruit customers.** According to Vivian, members challenged the pitch, liked the idea and signed up. |
-| Wed, Oct 7 | Added roster-gated dinner access, explicit participation/photo choices, clearer RSVP controls and saved-response celebrations; separated consent fields from optional answers in the response export. Community-operator outreach surfaced the member-only dinner use case. |
-| Thu, Oct 8 | Aligned invitation details with Calendar timing and consolidated matching, hosting and business operations. **Delivered Dinner 001 with four people including Vivian**, founder-reported. Shared-interest conversation and hosting lessons informed the next iteration. |
-| Fri, Oct 9 | **Vivian worked on the presentation and pitch after cancellations left the second dinner without enough confirmed guests.** People expressed interest in future dinners but reported midterm-related scheduling constraints. The second dinner was postponed. Updated audit: **33 unique sign-ups including Vivian, 247 company emails sent, and 20 substantive human replies across 18 organizations**. |
-| Sat, Oct 10 | **Planned:** practice another pitch and attend an SF Tech Week event. Finish the pitch/demo and submission preparation. |
-| Sun, Oct 11 | **Scheduled by organizers:** Demo Day at SCET, Grimes Engineering Center, top floor, 1–4 PM; table rounds 1:30–2:30 PM. Finalists pitch for three minutes. |
+| Day | Product and real-world execution | Initial cold emails sent | Content and distribution |
+| --- | --- | ---: | --- |
+| Mon, Oct 5 | Rebuilt the invitation experience, interest entry and meal-availability UI; added before/after feedback, check-in and cancellation-priority handling. | — | Developed the invitation-first experience and launch positioning. |
+| Tue, Oct 6 | Improved durable Sheets delivery and retries, shortened intake, added date-specific dinner choices and community affinity, and refined referral and partner invitation pages. | **44** | **Recorded product demos.** Pitched Interaction Club to a consulting club to practice and recruit participants; members challenged the pitch and signed up. Personal texts and hand-selling brought the first people in. |
+| Wed, Oct 7 | Added roster-gated dinner access, explicit participation/photo choices, clearer RSVP controls and saved-response celebrations; separated consent fields from optional answers. Community-operator outreach surfaced the member-only dinner use case. | **31** | Published **one founder-introduction reel and one FOMO carousel**. Continued personal outreach and participant recruitment. |
+| Thu, Oct 8 | Aligned invitations with Calendar timing and consolidated matching, hosting and business operations. **Hosted the first Berkeley dinner with four attendees.** Conversation and hosting lessons informed the next iteration. | **89** | Published **one FOMO carousel and one invitation-demo reel**. Continued partner outreach and dinner coordination. |
+| Fri, Oct 9 | Refined the presentation, technical narrative, delivery economics and scalable hosting model. Postponed the second dinner after too few guests confirmed during midterms. Reached **33 unique sign-ups, 247 company emails sent, and 20 substantive human replies across 18 organizations**. | **73** | Published **one full-demo reel and one founder-flex carousel about being recruited**. Prepared the company pitch and followed up on community partnership conversations. |
+| Sat, Oct 10 | **Planned:** practice the pitch, attend an SF Tech Week event, and finish submission preparation. | — | **Planned:** one FOMO carousel about the first dinner and one final **2–3 minute company-pitch reel** covering the vision, scalability, technical implementation and AI-assisted community operations for enterprise buyers. |
+| Sun, Oct 11 | **Scheduled:** Demo Day at SCET, Grimes Engineering Center, top floor, 1–4 PM; table rounds 1:30–2:30 PM. Finalists pitch for three minutes. | — | Present the working product, first-dinner learning and scalable company vision. |
 
 ### Partner outreach prospects — October 9
 
