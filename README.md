@@ -29,10 +29,12 @@ I researched the problem before the hackathon, then rebuilt an unfinished protot
 | Sat, Oct 10 | **Planned:** rehearse the pitch, attend an SF Tech Week event, prepare the final submission and record the **2–3 minute company pitch**. | **Planned:** founder outreach and pitch practice; one FOMO carousel about the first dinner and one company-pitch reel covering the vision, scalability, technical implementation and AI-assisted community operations. Turn the documented week into the launch story. |
 | Sun, Oct 11 | **Scheduled:** Demo Day at SCET, Grimes Engineering Center, top floor, 1–4 PM; table rounds 1:30–2:30 PM. Finalists pitch for three minutes. | **Planned:** pitch the working product and company vision to judges and attendees, recruit interested participants and partners, and document Demo Day. |
 
-### Partner outreach prospects — October 9
+### Partner outreach prospects — updated October 10
 
 | Organization | Response and opportunity | Next step |
 | --- | --- | --- |
+| **Outsome (International Accelerator)** | Expressed interest in a potential paid pilot for an upcoming SF cohort and asked for our organizing fee and typical headcount before deciding. | Share a scoped proposal with pricing and group size. |
+| **LAUNCH accelerator** | Its Managing Director invited us to reconnect when raising funding and offered a conversation about the business. | Reconnect when preparing a fundraise. |
 | **Yes SF / SF Chamber of Commerce** | Following an internal referral, Sydney requested a call to explore how Interaction Club could benefit the organization. | Coordinate a conversation for next week. |
 | **Pear VC** | Khalil asked about our community, previous founder/VC-focused events and costs, and included another contact in the conversation. | Share our launch progress and discuss a first pilot. |
 | **Mox SF** | Robin expressed interest in a dinner entirely for Mox members, with space and support for facilitating matches. | Replied to discuss the pilot format and shared a personalized concept preview. |
