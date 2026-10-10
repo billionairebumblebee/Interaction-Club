@@ -8,11 +8,11 @@ Interaction Club helps adults meet through small-group dinners and personal invi
 
 ## From working product to real community conversations
 
-**Built, marketed and tested during hackathon week:** a working invitation-to-RSVP experience, **33 unique sign-ups**, and **one Berkeley dinner already hosted on October 8**.
+**Built, marketed and tested during hackathon week:** **237 initial cold emails**, **10+ founder-led social posts**, untracked personal texts and hand-selling, **33 unique sign-ups**, **one Berkeley dinner already hosted on October 8**, and partnership conversations with **Mox SF, Pear VC, Yes SF / SF Chamber of Commerce and Malaika Commons SF**—alongside a working invitation-to-RSVP product.
 
-We sent **237 initial cold emails and 10 follow-ups/replies — 247 company emails total**, opening partnership conversations with **Mox SF, Pear VC and Yes SF / SF Chamber of Commerce** about bringing Interaction Club to their communities.
+We sent **237 initial cold emails and 10 follow-ups/replies — 247 company emails total**, opening partnership conversations with **Mox SF, Pear VC, Yes SF / SF Chamber of Commerce and Malaika Commons SF** about bringing Interaction Club to their communities.
 
-I personally published **six social posts through Friday**, recorded product demos, pitched on campus, and sent more personal texts and hand-sold invitations than I could keep count of. I documented the work as I went: the build, handwritten name tags, dinner preparation and the first dinner itself. That founder-led storytelling brought people into the product, while participant feedback and buyer conversations shaped what we built next.
+I personally published **10+ founder-led social posts, including videos and Stories**, recorded product demos, pitched on campus, and sent more personal texts and hand-sold invitations than I could keep count of. I documented the work as I went: the build, handwritten name tags, dinner preparation and the first dinner itself. That founder-led storytelling brought people into the product, while participant feedback and buyer conversations shaped what we built next.
 
 ## Hackathon week: October 5–11, 2026
 
